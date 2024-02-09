@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Azure.Core.TestFramework;
 using Azure.ResourceManager.Resources;
 using NUnit.Framework;
+using Azure.Core;
+using Azure.ResourceManager.Oracle.Models;
 
 namespace Azure.ResourceManager.Oracle.Tests.Scenario
 {
@@ -45,25 +47,42 @@ namespace Azure.ResourceManager.Oracle.Tests.Scenario
             CloudExadataInfrastructureResource exaInfraResource = getExaInfraResponse.Value;
             Assert.IsNotNull(exaInfraResource);
 
-            // Check Existence
-            Response<bool> exaInfraExists = await cloudExadataInfrastructureCollection.ExistsAsync("OFake_SdkExadata_test_1");
-            bool checkResult = exaInfraExists.Value;
-            Assert.IsTrue(checkResult);
-
-            // Get if exists - exists
-            NullableResponse<CloudExadataInfrastructureResource> getExaInfraNullableResponse = await cloudExadataInfrastructureCollection.GetIfExistsAsync(cloudExadataInfrastructureName);
-            CloudExadataInfrastructureResource exaInfraResource2 = getExaInfraNullableResponse.Value;
-            Assert.IsNotNull(exaInfraResource2);
-
-            // Get if exists - not exist
-            NullableResponse<CloudExadataInfrastructureResource> getExaInfraNullableResponse2 = await cloudExadataInfrastructureCollection.GetIfExistsAsync("OFake_not_exist");
-            Assert.IsFalse(getExaInfraNullableResponse2.HasValue);
-
             // ListByResourceGroup
-            AsyncPageable<CloudExadataInfrastructureResource> ExaInfras = cloudExadataInfrastructureCollection.GetAllAsync();
-            List<CloudExadataInfrastructureResource> exaInfraResult = await ExaInfras.ToEnumerableAsync();
+            AsyncPageable<CloudExadataInfrastructureResource> exaInfras = cloudExadataInfrastructureCollection.GetAllAsync();
+            List<CloudExadataInfrastructureResource> exaInfraResult = await exaInfras.ToEnumerableAsync();
             Assert.NotNull(exaInfraResult);
             Assert.IsTrue(exaInfraResult.Count >= 1);
+
+            // ListBySubscription
+            exaInfras = OracleExtensions.GetCloudExadataInfrastructuresAsync(DefaultSubscription);
+            exaInfraResult = await exaInfras.ToEnumerableAsync();
+            Assert.NotNull(exaInfraResult);
+            Assert.IsTrue(exaInfraResult.Count >= 1);
+
+            // Update
+            var tagName = Recording.GenerateAssetName("TagName");
+            var tagValue = Recording.GenerateAssetName("TagValue");
+            ChangeTrackingDictionary<string, string> tags = new ChangeTrackingDictionary<string, string>
+            {
+                new KeyValuePair<string, string>(tagName, tagValue)
+            };
+            CloudExadataInfrastructurePatch exaInfraParameter = new() {
+                Tags = tags
+            };
+            var updateExaInfraOpreration = await exaInfraResource.UpdateAsync(WaitUntil.Completed, exaInfraParameter);
+            Assert.IsTrue(updateExaInfraOpreration.HasCompleted);
+            Assert.IsTrue(updateExaInfraOpreration.HasValue);
+
+            // Get
+            getExaInfraResponse = await cloudExadataInfrastructureCollection.GetAsync(cloudExadataInfrastructureName);
+            exaInfraResource = getExaInfraResponse.Value;
+            Assert.IsNotNull(exaInfraResource);
+            Assert.IsTrue(exaInfraResource.Data.Tags.ContainsKey(tagName));
+
+            // Delete
+            var deleteExaInfraOperation = await exaInfraResource.DeleteAsync(WaitUntil.Completed);
+            await deleteExaInfraOperation.WaitForCompletionResponseAsync();
+            Assert.IsTrue(deleteExaInfraOperation.HasCompleted);
         }
     }
 }

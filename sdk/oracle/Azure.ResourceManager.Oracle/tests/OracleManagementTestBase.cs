@@ -14,7 +14,7 @@ namespace Azure.ResourceManager.Oracle.Tests
     public class OracleManagementTestBase :ManagementRecordedTestBase<OracleManagementTestEnvironment>
     {
         protected ArmClient Client { get; private set; }
-        protected SubscriptionResource DefaultSubscription { get; private set; }
+        public SubscriptionResource DefaultSubscription { get; private set; }
         public ResourceGroupCollection ResourceGroupsOperations { get; set; }
         public string SubscriptionId { get; set; }
         protected OracleManagementTestBase(bool isAsync, RecordedTestMode

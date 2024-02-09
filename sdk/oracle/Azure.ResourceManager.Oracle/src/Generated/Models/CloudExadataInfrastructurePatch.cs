@@ -65,8 +65,8 @@ namespace Azure.ResourceManager.Oracle.Models
         }
 
         /// <summary> CloudExadataInfrastructure zones. </summary>
-        public IList<string> Zones { get; }
+        public IList<string> Zones { get; set; }
         /// <summary> Resource tags. </summary>
-        public IDictionary<string, string> Tags { get; }
+        public IDictionary<string, string> Tags { get; set; }
     }
 }
