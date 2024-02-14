@@ -213,7 +213,7 @@ namespace Azure.ResourceManager.Oracle
         /// <summary> Operating system version of the image. </summary>
         public string SystemVersion { get; }
         /// <summary> The public key portion of one or more key pairs used for SSH access to the cloud VM cluster. </summary>
-        public IList<string> SshPublicKeys { get; }
+        public IList<string> SshPublicKeys { get; set; }
         /// <summary> The Oracle license model that applies to the cloud VM cluster. The default is LICENSE_INCLUDED. </summary>
         public LicenseModel? LicenseModel { get; set; }
         /// <summary> The type of redundancy configured for the cloud Vm cluster. NORMAL is 2-way redundancy. HIGH is 3-way redundancy. </summary>
@@ -255,7 +255,7 @@ namespace Azure.ResourceManager.Oracle
         /// <summary> The OCID of the last maintenance update history entry. </summary>
         public string LastUpdateHistoryEntryId { get; }
         /// <summary> The list of DB servers. </summary>
-        public IList<string> DbServers { get; }
+        public IList<string> DbServers { get; set; }
         /// <summary> Cluster compartmentId. </summary>
         public string CompartmentId { get; }
         /// <summary> Cluster subnet ocid. </summary>

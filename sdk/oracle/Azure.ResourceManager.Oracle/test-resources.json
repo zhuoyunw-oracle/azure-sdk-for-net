@@ -1,6 +1,172 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
+    "parameters": {
+        "sshPublicKeys_SDK_VMCluster_name": {
+            "defaultValue": "SDK_VMCluster",
+            "type": "String"
+        },
+        "virtualNetworks_SDKTestingVirtualNetwork_name": {
+            "defaultValue": "SDKTestingVirtualNetwork",
+            "type": "String"
+        },
+        "privateDnsZones_ocidelegated_ocisdktestingv_oraclevcn_com_name": {
+            "defaultValue": "ocidelegated.ocisdktestingv.oraclevcn.com",
+            "type": "String"
+        }
+    },
+    "variables": {},
     "resources": [
+        {
+            "type": "Microsoft.Compute/sshPublicKeys",
+            "apiVersion": "2023-03-01",
+            "name": "[parameters('sshPublicKeys_SDK_VMCluster_name')]",
+            "location": "eastus",
+            "properties": {
+                "publicKey": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDDrgWI+76BPb8E+/KRgM+JWizRyMuaX/Pdot14fXir+i0BoAOmfcgmO2D6L+5MfL0+ToXhhZmQZnH02h5t1gsTnlYgdAZfRv/qnAjyML5qXTyWSalKvwD9C3hPYMSQXoWk2cR2lrP1DWtOUWEht3ot+OFR0DJ0uTPo6dUyLqsPsFWJyZYn3KdztX8BFCy5T6u+b2Y2AUJ3/iooJeRt79V3zFJ705towYW2d+iBouThLLnKvbf27MnVd9AdM/EPt0kJiTj4NssixrXWGVWNREOdpWMccbK7VMc7vTbWhm/QdMMNQBjJk7JazxPhZQ+o7mdrrNZCVRuSgspBze04Imgl2pmoX+XD7TBMsEaNiePV7AuggR1/JncGnZztETLv90nClR+pvoYthgtneZ4xu68c3JATXb5KMgRa0afPR1eEZfwJzPXegsMGKskaIKhthZbBYBrJNSOppgTzNg6Wsj9qiyA4fm2GpkZoDGwGDGE2xFOS4CKe6ArTK3Onqi/HWiU= generated-by-azure"
+            }
+        },
+        {
+            "type": "Microsoft.Network/privateDnsZones",
+            "apiVersion": "2018-09-01",
+            "name": "[parameters('privateDnsZones_ocidelegated_ocisdktestingv_oraclevcn_com_name')]",
+            "location": "global",
+            "properties": {
+                "maxNumberOfRecordSets": 25000,
+                "maxNumberOfVirtualNetworkLinks": 1000,
+                "maxNumberOfVirtualNetworkLinksWithRegistration": 100,
+                "numberOfRecordSets": 1,
+                "numberOfVirtualNetworkLinks": 1,
+                "numberOfVirtualNetworkLinksWithRegistration": 0,
+                "provisioningState": "Succeeded"
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks",
+            "apiVersion": "2023-06-01",
+            "name": "[parameters('virtualNetworks_SDKTestingVirtualNetwork_name')]",
+            "location": "eastus",
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "10.0.0.0/16"
+                    ]
+                },
+                "encryption": {
+                    "enabled": false,
+                    "enforcement": "AllowUnencrypted"
+                },
+                "subnets": [
+                    {
+                        "name": "default",
+                        "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_SDKTestingVirtualNetwork_name'), 'default')]",
+                        "properties": {
+                            "addressPrefix": "10.0.0.0/24",
+                            "delegations": [],
+                            "privateEndpointNetworkPolicies": "Disabled",
+                            "privateLinkServiceNetworkPolicies": "Enabled"
+                        },
+                        "type": "Microsoft.Network/virtualNetworks/subnets"
+                    },
+                    {
+                        "name": "delegated",
+                        "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_SDKTestingVirtualNetwork_name'), 'delegated')]",
+                        "properties": {
+                            "addressPrefix": "10.0.1.0/24",
+                            "serviceEndpoints": [],
+                            "delegations": [
+                                {
+                                    "name": "Oracle.Database.networkAttachments",
+                                    "id": "[concat(resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_SDKTestingVirtualNetwork_name'), 'delegated'), '/delegations/Oracle.Database.networkAttachments')]",
+                                    "properties": {
+                                        "serviceName": "Oracle.Database/networkAttachments"
+                                    },
+                                    "type": "Microsoft.Network/virtualNetworks/subnets/delegations"
+                                }
+                            ],
+                            "privateEndpointNetworkPolicies": "Disabled",
+                            "privateLinkServiceNetworkPolicies": "Enabled"
+                        },
+                        "type": "Microsoft.Network/virtualNetworks/subnets"
+                    }
+                ],
+                "virtualNetworkPeerings": [],
+                "enableDdosProtection": false
+            }
+        },
+        {
+            "type": "Microsoft.Network/privateDnsZones/SOA",
+            "apiVersion": "2018-09-01",
+            "name": "[concat(parameters('privateDnsZones_ocidelegated_ocisdktestingv_oraclevcn_com_name'), '/@')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/privateDnsZones', parameters('privateDnsZones_ocidelegated_ocisdktestingv_oraclevcn_com_name'))]"
+            ],
+            "properties": {
+                "ttl": 3600,
+                "soaRecord": {
+                    "email": "azureprivatedns-host.microsoft.com",
+                    "expireTime": 2419200,
+                    "host": "azureprivatedns.net",
+                    "minimumTtl": 10,
+                    "refreshTime": 3600,
+                    "retryTime": 300,
+                    "serialNumber": 1
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "apiVersion": "2023-06-01",
+            "name": "[concat(parameters('virtualNetworks_SDKTestingVirtualNetwork_name'), '/default')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_SDKTestingVirtualNetwork_name'))]"
+            ],
+            "properties": {
+                "addressPrefix": "10.0.0.0/24",
+                "delegations": [],
+                "privateEndpointNetworkPolicies": "Disabled",
+                "privateLinkServiceNetworkPolicies": "Enabled"
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "apiVersion": "2023-06-01",
+            "name": "[concat(parameters('virtualNetworks_SDKTestingVirtualNetwork_name'), '/delegated')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_SDKTestingVirtualNetwork_name'))]"
+            ],
+            "properties": {
+                "addressPrefix": "10.0.1.0/24",
+                "serviceEndpoints": [],
+                "delegations": [
+                    {
+                        "name": "Oracle.Database.networkAttachments",
+                        "id": "[concat(resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_SDKTestingVirtualNetwork_name'), 'delegated'), '/delegations/Oracle.Database.networkAttachments')]",
+                        "properties": {
+                            "serviceName": "Oracle.Database/networkAttachments"
+                        },
+                        "type": "Microsoft.Network/virtualNetworks/subnets/delegations"
+                    }
+                ],
+                "privateEndpointNetworkPolicies": "Disabled",
+                "privateLinkServiceNetworkPolicies": "Enabled"
+            }
+        },
+        {
+            "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
+            "apiVersion": "2018-09-01",
+            "name": "[concat(parameters('privateDnsZones_ocidelegated_ocisdktestingv_oraclevcn_com_name'), '/', parameters('privateDnsZones_ocidelegated_ocisdktestingv_oraclevcn_com_name'))]",
+            "location": "global",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/privateDnsZones', parameters('privateDnsZones_ocidelegated_ocisdktestingv_oraclevcn_com_name'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_SDKTestingVirtualNetwork_name'))]"
+            ],
+            "properties": {
+                "registrationEnabled": false,
+                "virtualNetwork": {
+                    "id": "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_SDKTestingVirtualNetwork_name'))]"
+                }
+            }
+        }
     ]
 }

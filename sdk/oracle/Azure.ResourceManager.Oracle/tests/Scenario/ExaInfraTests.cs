@@ -8,6 +8,7 @@ using Azure.ResourceManager.Resources;
 using NUnit.Framework;
 using Azure.Core;
 using Azure.ResourceManager.Oracle.Models;
+using System;
 
 namespace Azure.ResourceManager.Oracle.Tests.Scenario
 {
@@ -20,7 +21,9 @@ namespace Azure.ResourceManager.Oracle.Tests.Scenario
         [SetUp]
         public async Task ClearAndInitialize()
         {
-            await CreateCommonClient();
+            if (Mode == RecordedTestMode.Record || Mode == RecordedTestMode.Playback){
+                await CreateCommonClient();
+            }
         }
         [OneTimeTearDown]
         public void Cleanup()
@@ -30,10 +33,11 @@ namespace Azure.ResourceManager.Oracle.Tests.Scenario
         [TestCase]
         public async Task TestExaInfraOperations()
         {
-            ResourceGroupResource rg = await GetResourceGroupResourceAsync("SDKtesting");
-            CloudExadataInfrastructureCollection cloudExadataInfrastructureCollection = rg.GetCloudExadataInfrastructures();
-            var cloudExadataInfrastructureName = "OFake_SdkExadata_test_1";
-            CloudExadataInfrastructureData exadataInfrastructureData = GetDefaultCloudExadataInfrastructureData();
+            var resourceGroupName = Recording.GenerateAssetName("SdkRg");
+            await TryRegisterResourceGroupAsync(ResourceGroupsOperations, "eastus", resourceGroupName);
+            CloudExadataInfrastructureCollection cloudExadataInfrastructureCollection = await GetCloudExadataInfrastructureCollectionAsync(resourceGroupName);
+            var cloudExadataInfrastructureName = Recording.GenerateAssetName("OFake_SdkExadata");
+            CloudExadataInfrastructureData exadataInfrastructureData = GetDefaultCloudExadataInfrastructureData(cloudExadataInfrastructureName);
 
             // Create
             var createExadataOperation = await cloudExadataInfrastructureCollection.CreateOrUpdateAsync(WaitUntil.Completed,

@@ -30,39 +30,36 @@ namespace Azure.ResourceManager.Oracle.Tests
         public async Task CreateCommonClient()
         {
             Client = GetArmClient();
-            DefaultSubscription = await
-            Client.GetDefaultSubscriptionAsync().ConfigureAwait(false);
+            DefaultSubscription = await Client.GetDefaultSubscriptionAsync().ConfigureAwait(false);
             ResourceGroupsOperations = DefaultSubscription.GetResourceGroups();
         }
 
-        protected async Task<ResourceGroupResource> CreateResourceGroup(SubscriptionResource subscription, string rgNamePrefix,
-        AzureLocation location)
+        public static async Task TryRegisterResourceGroupAsync(ResourceGroupCollection resourceGroupsOperations, string location, string resourceGroupName)
         {
-            string rgName = Recording.GenerateAssetName(rgNamePrefix);
-            ResourceGroupData input = new ResourceGroupData(location);
-            var lro = await
-            subscription.GetResourceGroups().CreateOrUpdateAsync(WaitUntil.Completed,
-            rgName, input);
-            return lro.Value;
+            await resourceGroupsOperations.CreateOrUpdateAsync(WaitUntil.Completed, resourceGroupName, new ResourceGroupData(location));
         }
 
-        public async Task<ResourceGroupResource> GetResourceGroupResourceAsync(String name) {
+        public async Task<ResourceGroupResource> GetResourceGroupResourceAsync(string name) {
             return await DefaultSubscription.GetResourceGroups().GetAsync(name);
         }
 
-        protected async Task<CloudExadataInfrastructureCollection> GetCloudExadataInfrastructureCollectionAsync(String resourceGroupName) {
-            ResourceGroupResource rg = await
-            GetResourceGroupResourceAsync(resourceGroupName);
+        protected async Task<CloudExadataInfrastructureCollection> GetCloudExadataInfrastructureCollectionAsync(string resourceGroupName) {
+            ResourceGroupResource rg = await GetResourceGroupResourceAsync(resourceGroupName);
             return rg.GetCloudExadataInfrastructures();
         }
 
-        protected static CloudExadataInfrastructureData GetDefaultCloudExadataInfrastructureData() {
+        protected async Task<CloudVmClusterCollection> GetCloudVmClusterCollectionAsync(string resourceGroupName) {
+            ResourceGroupResource rg = await GetResourceGroupResourceAsync(resourceGroupName);
+            return rg.GetCloudVmClusters();
+        }
+
+        protected static CloudExadataInfrastructureData GetDefaultCloudExadataInfrastructureData(string exaInfraName) {
             return new CloudExadataInfrastructureData(AzureLocation.EastUS, new
             List<string>{ "2" }) {
-            ComputeCount = 2,
-            StorageCount = 3,
-            Shape = "Exadata.X9M",
-            DisplayName = "OFake_SdkExadata_test_1"
+                ComputeCount = 2,
+                StorageCount = 3,
+                Shape = "Exadata.X9M",
+                DisplayName = exaInfraName
             };
         }
     }
