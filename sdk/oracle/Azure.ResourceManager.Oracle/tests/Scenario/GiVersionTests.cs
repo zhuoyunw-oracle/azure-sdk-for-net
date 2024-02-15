@@ -7,6 +7,7 @@ using Azure.Core.TestFramework;
 using Azure.ResourceManager.Resources;
 using NUnit.Framework;
 using Azure.Core;
+using Azure.ResourceManager.Oracle.Models;
 
 namespace Azure.ResourceManager.Oracle.Tests.Scenario
 {
@@ -33,11 +34,11 @@ namespace Azure.ResourceManager.Oracle.Tests.Scenario
         public async Task TestGiVersionOperations()
         {
             // List By Location
-            GiVersionCollection giVersions = OracleExtensions.GetGiVersions(DefaultSubscription, AzureLocation.EastUS);
-            List<GiVersionResource> giVersionResources = await giVersions.ToEnumerableAsync();
-            Assert.NotNull(giVersionResources);
-            Assert.IsTrue(giVersionResources.Count >= 1);
-            Assert.AreEqual("19.0.0.0", giVersionResources[0].Data.Name);
+            AsyncPageable<GiVersion> giVersionListResponse = OracleExtensions.GetGiVersionsByLocationAsync(DefaultSubscription, AzureLocation.EastUS);
+            List<GiVersion> giVersions = await giVersionListResponse.ToEnumerableAsync();
+            Assert.NotNull(giVersions);
+            Assert.IsTrue(giVersions.Count >= 1);
+            Assert.AreEqual("19.0.0.0", giVersions[0].Name);
         }
     }
 }

@@ -10,7 +10,6 @@ using System.ClientModel.Primitives;
 using System.Collections.Generic;
 using System.Text.Json;
 using Azure.Core;
-using Azure.ResourceManager.Oracle;
 
 namespace Azure.ResourceManager.Oracle.Models
 {
@@ -77,7 +76,7 @@ namespace Azure.ResourceManager.Oracle.Models
             {
                 return null;
             }
-            IReadOnlyList<DbSystemShapeData> value = default;
+            IReadOnlyList<DbSystemShape> value = default;
             Optional<Uri> nextLink = default;
             IDictionary<string, BinaryData> serializedAdditionalRawData = default;
             Dictionary<string, BinaryData> additionalPropertiesDictionary = new Dictionary<string, BinaryData>();
@@ -85,10 +84,10 @@ namespace Azure.ResourceManager.Oracle.Models
             {
                 if (property.NameEquals("value"u8))
                 {
-                    List<DbSystemShapeData> array = new List<DbSystemShapeData>();
+                    List<DbSystemShape> array = new List<DbSystemShape>();
                     foreach (var item in property.Value.EnumerateArray())
                     {
-                        array.Add(DbSystemShapeData.DeserializeDbSystemShapeData(item));
+                        array.Add(DbSystemShape.DeserializeDbSystemShape(item));
                     }
                     value = array;
                     continue;

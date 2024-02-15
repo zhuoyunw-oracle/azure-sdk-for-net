@@ -12,6 +12,7 @@ using Azure;
 using Azure.Core;
 using Azure.ResourceManager;
 using Azure.ResourceManager.Oracle.Mocking;
+using Azure.ResourceManager.Oracle.Models;
 using Azure.ResourceManager.Resources;
 
 namespace Azure.ResourceManager.Oracle
@@ -73,82 +74,6 @@ namespace Azure.ResourceManager.Oracle
         }
 
         /// <summary>
-        /// Gets an object representing a <see cref="DbSystemShapeResource" /> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="DbSystemShapeResource.CreateResourceIdentifier" /> to create a <see cref="DbSystemShapeResource" /> <see cref="ResourceIdentifier" /> from its components.
-        /// <item>
-        /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableOracleArmClient.GetDbSystemShapeResource(ResourceIdentifier)"/> instead.</description>
-        /// </item>
-        /// </summary>
-        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
-        /// <returns> Returns a <see cref="DbSystemShapeResource"/> object. </returns>
-        public static DbSystemShapeResource GetDbSystemShapeResource(this ArmClient client, ResourceIdentifier id)
-        {
-            Argument.AssertNotNull(client, nameof(client));
-
-            return GetMockableOracleArmClient(client).GetDbSystemShapeResource(id);
-        }
-
-        /// <summary>
-        /// Gets an object representing a <see cref="DnsPrivateViewResource" /> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="DnsPrivateViewResource.CreateResourceIdentifier" /> to create a <see cref="DnsPrivateViewResource" /> <see cref="ResourceIdentifier" /> from its components.
-        /// <item>
-        /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableOracleArmClient.GetDnsPrivateViewResource(ResourceIdentifier)"/> instead.</description>
-        /// </item>
-        /// </summary>
-        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
-        /// <returns> Returns a <see cref="DnsPrivateViewResource"/> object. </returns>
-        public static DnsPrivateViewResource GetDnsPrivateViewResource(this ArmClient client, ResourceIdentifier id)
-        {
-            Argument.AssertNotNull(client, nameof(client));
-
-            return GetMockableOracleArmClient(client).GetDnsPrivateViewResource(id);
-        }
-
-        /// <summary>
-        /// Gets an object representing a <see cref="DnsPrivateZoneResource" /> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="DnsPrivateZoneResource.CreateResourceIdentifier" /> to create a <see cref="DnsPrivateZoneResource" /> <see cref="ResourceIdentifier" /> from its components.
-        /// <item>
-        /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableOracleArmClient.GetDnsPrivateZoneResource(ResourceIdentifier)"/> instead.</description>
-        /// </item>
-        /// </summary>
-        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
-        /// <returns> Returns a <see cref="DnsPrivateZoneResource"/> object. </returns>
-        public static DnsPrivateZoneResource GetDnsPrivateZoneResource(this ArmClient client, ResourceIdentifier id)
-        {
-            Argument.AssertNotNull(client, nameof(client));
-
-            return GetMockableOracleArmClient(client).GetDnsPrivateZoneResource(id);
-        }
-
-        /// <summary>
-        /// Gets an object representing a <see cref="GiVersionResource" /> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="GiVersionResource.CreateResourceIdentifier" /> to create a <see cref="GiVersionResource" /> <see cref="ResourceIdentifier" /> from its components.
-        /// <item>
-        /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableOracleArmClient.GetGiVersionResource(ResourceIdentifier)"/> instead.</description>
-        /// </item>
-        /// </summary>
-        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
-        /// <returns> Returns a <see cref="GiVersionResource"/> object. </returns>
-        public static GiVersionResource GetGiVersionResource(this ArmClient client, ResourceIdentifier id)
-        {
-            Argument.AssertNotNull(client, nameof(client));
-
-            return GetMockableOracleArmClient(client).GetGiVersionResource(id);
-        }
-
-        /// <summary>
         /// Gets an object representing an <see cref="OracleSubscriptionResource" /> along with the instance operations that can be performed on it but with no data.
         /// You can use <see cref="OracleSubscriptionResource.CreateResourceIdentifier" /> to create an <see cref="OracleSubscriptionResource" /> <see cref="ResourceIdentifier" /> from its components.
         /// <item>
@@ -184,44 +109,6 @@ namespace Azure.ResourceManager.Oracle
             Argument.AssertNotNull(client, nameof(client));
 
             return GetMockableOracleArmClient(client).GetDbServerResource(id);
-        }
-
-        /// <summary>
-        /// Gets an object representing a <see cref="DbNodeResource" /> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="DbNodeResource.CreateResourceIdentifier" /> to create a <see cref="DbNodeResource" /> <see cref="ResourceIdentifier" /> from its components.
-        /// <item>
-        /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableOracleArmClient.GetDbNodeResource(ResourceIdentifier)"/> instead.</description>
-        /// </item>
-        /// </summary>
-        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
-        /// <returns> Returns a <see cref="DbNodeResource"/> object. </returns>
-        public static DbNodeResource GetDbNodeResource(this ArmClient client, ResourceIdentifier id)
-        {
-            Argument.AssertNotNull(client, nameof(client));
-
-            return GetMockableOracleArmClient(client).GetDbNodeResource(id);
-        }
-
-        /// <summary>
-        /// Gets an object representing a <see cref="VirtualNetworkAddressResource" /> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="VirtualNetworkAddressResource.CreateResourceIdentifier" /> to create a <see cref="VirtualNetworkAddressResource" /> <see cref="ResourceIdentifier" /> from its components.
-        /// <item>
-        /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableOracleArmClient.GetVirtualNetworkAddressResource(ResourceIdentifier)"/> instead.</description>
-        /// </item>
-        /// </summary>
-        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
-        /// <returns> Returns a <see cref="VirtualNetworkAddressResource"/> object. </returns>
-        public static VirtualNetworkAddressResource GetVirtualNetworkAddressResource(this ArmClient client, ResourceIdentifier id)
-        {
-            Argument.AssertNotNull(client, nameof(client));
-
-            return GetMockableOracleArmClient(client).GetVirtualNetworkAddressResource(id);
         }
 
         /// <summary>
@@ -411,390 +298,6 @@ namespace Azure.ResourceManager.Oracle
         }
 
         /// <summary>
-        /// Gets a collection of DbSystemShapeResources in the SubscriptionResource.
-        /// <item>
-        /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableOracleSubscriptionResource.GetDbSystemShapes(AzureLocation)"/> instead.</description>
-        /// </item>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="location"> Location name. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
-        /// <returns> An object representing collection of DbSystemShapeResources and their operations over a DbSystemShapeResource. </returns>
-        public static DbSystemShapeCollection GetDbSystemShapes(this SubscriptionResource subscriptionResource, AzureLocation location)
-        {
-            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
-
-            return GetMockableOracleSubscriptionResource(subscriptionResource).GetDbSystemShapes(location);
-        }
-
-        /// <summary>
-        /// Get a DbSystemShape
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Oracle.Database/locations/{location}/dbSystemShapes/{dbsystemshapename}</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>DbSystemShapes_Get</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2023-09-01-preview</description>
-        /// </item>
-        /// <item>
-        /// <term>Resource</term>
-        /// <description><see cref="DbSystemShapeResource"/></description>
-        /// </item>
-        /// </list>
-        /// <item>
-        /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableOracleSubscriptionResource.GetDbSystemShapeAsync(AzureLocation,string,CancellationToken)"/> instead.</description>
-        /// </item>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="location"> Location name. </param>
-        /// <param name="dbsystemshapename"> DbSystemShape name. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> or <paramref name="dbsystemshapename"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="dbsystemshapename"/> is an empty string, and was expected to be non-empty. </exception>
-        [ForwardsClientCalls]
-        public static async Task<Response<DbSystemShapeResource>> GetDbSystemShapeAsync(this SubscriptionResource subscriptionResource, AzureLocation location, string dbsystemshapename, CancellationToken cancellationToken = default)
-        {
-            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
-
-            return await GetMockableOracleSubscriptionResource(subscriptionResource).GetDbSystemShapeAsync(location, dbsystemshapename, cancellationToken).ConfigureAwait(false);
-        }
-
-        /// <summary>
-        /// Get a DbSystemShape
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Oracle.Database/locations/{location}/dbSystemShapes/{dbsystemshapename}</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>DbSystemShapes_Get</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2023-09-01-preview</description>
-        /// </item>
-        /// <item>
-        /// <term>Resource</term>
-        /// <description><see cref="DbSystemShapeResource"/></description>
-        /// </item>
-        /// </list>
-        /// <item>
-        /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableOracleSubscriptionResource.GetDbSystemShape(AzureLocation,string,CancellationToken)"/> instead.</description>
-        /// </item>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="location"> Location name. </param>
-        /// <param name="dbsystemshapename"> DbSystemShape name. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> or <paramref name="dbsystemshapename"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="dbsystemshapename"/> is an empty string, and was expected to be non-empty. </exception>
-        [ForwardsClientCalls]
-        public static Response<DbSystemShapeResource> GetDbSystemShape(this SubscriptionResource subscriptionResource, AzureLocation location, string dbsystemshapename, CancellationToken cancellationToken = default)
-        {
-            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
-
-            return GetMockableOracleSubscriptionResource(subscriptionResource).GetDbSystemShape(location, dbsystemshapename, cancellationToken);
-        }
-
-        /// <summary>
-        /// Gets a collection of DnsPrivateViewResources in the SubscriptionResource.
-        /// <item>
-        /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableOracleSubscriptionResource.GetDnsPrivateViews(AzureLocation)"/> instead.</description>
-        /// </item>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="location"> Location name. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
-        /// <returns> An object representing collection of DnsPrivateViewResources and their operations over a DnsPrivateViewResource. </returns>
-        public static DnsPrivateViewCollection GetDnsPrivateViews(this SubscriptionResource subscriptionResource, AzureLocation location)
-        {
-            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
-
-            return GetMockableOracleSubscriptionResource(subscriptionResource).GetDnsPrivateViews(location);
-        }
-
-        /// <summary>
-        /// Get a DnsPrivateView
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Oracle.Database/locations/{location}/dnsPrivateViews/{dnsprivateviewocid}</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>DnsPrivateViews_Get</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2023-09-01-preview</description>
-        /// </item>
-        /// <item>
-        /// <term>Resource</term>
-        /// <description><see cref="DnsPrivateViewResource"/></description>
-        /// </item>
-        /// </list>
-        /// <item>
-        /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableOracleSubscriptionResource.GetDnsPrivateViewAsync(AzureLocation,string,CancellationToken)"/> instead.</description>
-        /// </item>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="location"> Location name. </param>
-        /// <param name="dnsprivateviewocid"> DnsPrivateView OCID. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> or <paramref name="dnsprivateviewocid"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="dnsprivateviewocid"/> is an empty string, and was expected to be non-empty. </exception>
-        [ForwardsClientCalls]
-        public static async Task<Response<DnsPrivateViewResource>> GetDnsPrivateViewAsync(this SubscriptionResource subscriptionResource, AzureLocation location, string dnsprivateviewocid, CancellationToken cancellationToken = default)
-        {
-            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
-
-            return await GetMockableOracleSubscriptionResource(subscriptionResource).GetDnsPrivateViewAsync(location, dnsprivateviewocid, cancellationToken).ConfigureAwait(false);
-        }
-
-        /// <summary>
-        /// Get a DnsPrivateView
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Oracle.Database/locations/{location}/dnsPrivateViews/{dnsprivateviewocid}</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>DnsPrivateViews_Get</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2023-09-01-preview</description>
-        /// </item>
-        /// <item>
-        /// <term>Resource</term>
-        /// <description><see cref="DnsPrivateViewResource"/></description>
-        /// </item>
-        /// </list>
-        /// <item>
-        /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableOracleSubscriptionResource.GetDnsPrivateView(AzureLocation,string,CancellationToken)"/> instead.</description>
-        /// </item>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="location"> Location name. </param>
-        /// <param name="dnsprivateviewocid"> DnsPrivateView OCID. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> or <paramref name="dnsprivateviewocid"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="dnsprivateviewocid"/> is an empty string, and was expected to be non-empty. </exception>
-        [ForwardsClientCalls]
-        public static Response<DnsPrivateViewResource> GetDnsPrivateView(this SubscriptionResource subscriptionResource, AzureLocation location, string dnsprivateviewocid, CancellationToken cancellationToken = default)
-        {
-            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
-
-            return GetMockableOracleSubscriptionResource(subscriptionResource).GetDnsPrivateView(location, dnsprivateviewocid, cancellationToken);
-        }
-
-        /// <summary>
-        /// Gets a collection of DnsPrivateZoneResources in the SubscriptionResource.
-        /// <item>
-        /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableOracleSubscriptionResource.GetDnsPrivateZones(AzureLocation)"/> instead.</description>
-        /// </item>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="location"> Location name. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
-        /// <returns> An object representing collection of DnsPrivateZoneResources and their operations over a DnsPrivateZoneResource. </returns>
-        public static DnsPrivateZoneCollection GetDnsPrivateZones(this SubscriptionResource subscriptionResource, AzureLocation location)
-        {
-            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
-
-            return GetMockableOracleSubscriptionResource(subscriptionResource).GetDnsPrivateZones(location);
-        }
-
-        /// <summary>
-        /// Get a DnsPrivateZone
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Oracle.Database/locations/{location}/dnsPrivateZones/{dnsprivatezonename}</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>DnsPrivateZones_Get</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2023-09-01-preview</description>
-        /// </item>
-        /// <item>
-        /// <term>Resource</term>
-        /// <description><see cref="DnsPrivateZoneResource"/></description>
-        /// </item>
-        /// </list>
-        /// <item>
-        /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableOracleSubscriptionResource.GetDnsPrivateZoneAsync(AzureLocation,string,CancellationToken)"/> instead.</description>
-        /// </item>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="location"> Location name. </param>
-        /// <param name="dnsprivatezonename"> DnsPrivateZone name. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> or <paramref name="dnsprivatezonename"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="dnsprivatezonename"/> is an empty string, and was expected to be non-empty. </exception>
-        [ForwardsClientCalls]
-        public static async Task<Response<DnsPrivateZoneResource>> GetDnsPrivateZoneAsync(this SubscriptionResource subscriptionResource, AzureLocation location, string dnsprivatezonename, CancellationToken cancellationToken = default)
-        {
-            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
-
-            return await GetMockableOracleSubscriptionResource(subscriptionResource).GetDnsPrivateZoneAsync(location, dnsprivatezonename, cancellationToken).ConfigureAwait(false);
-        }
-
-        /// <summary>
-        /// Get a DnsPrivateZone
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Oracle.Database/locations/{location}/dnsPrivateZones/{dnsprivatezonename}</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>DnsPrivateZones_Get</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2023-09-01-preview</description>
-        /// </item>
-        /// <item>
-        /// <term>Resource</term>
-        /// <description><see cref="DnsPrivateZoneResource"/></description>
-        /// </item>
-        /// </list>
-        /// <item>
-        /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableOracleSubscriptionResource.GetDnsPrivateZone(AzureLocation,string,CancellationToken)"/> instead.</description>
-        /// </item>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="location"> Location name. </param>
-        /// <param name="dnsprivatezonename"> DnsPrivateZone name. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> or <paramref name="dnsprivatezonename"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="dnsprivatezonename"/> is an empty string, and was expected to be non-empty. </exception>
-        [ForwardsClientCalls]
-        public static Response<DnsPrivateZoneResource> GetDnsPrivateZone(this SubscriptionResource subscriptionResource, AzureLocation location, string dnsprivatezonename, CancellationToken cancellationToken = default)
-        {
-            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
-
-            return GetMockableOracleSubscriptionResource(subscriptionResource).GetDnsPrivateZone(location, dnsprivatezonename, cancellationToken);
-        }
-
-        /// <summary>
-        /// Gets a collection of GiVersionResources in the SubscriptionResource.
-        /// <item>
-        /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableOracleSubscriptionResource.GetGiVersions(AzureLocation)"/> instead.</description>
-        /// </item>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="location"> Location name. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
-        /// <returns> An object representing collection of GiVersionResources and their operations over a GiVersionResource. </returns>
-        public static GiVersionCollection GetGiVersions(this SubscriptionResource subscriptionResource, AzureLocation location)
-        {
-            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
-
-            return GetMockableOracleSubscriptionResource(subscriptionResource).GetGiVersions(location);
-        }
-
-        /// <summary>
-        /// Get a GiVersion
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Oracle.Database/locations/{location}/giVersions/{giversionname}</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>GiVersions_Get</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2023-09-01-preview</description>
-        /// </item>
-        /// <item>
-        /// <term>Resource</term>
-        /// <description><see cref="GiVersionResource"/></description>
-        /// </item>
-        /// </list>
-        /// <item>
-        /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableOracleSubscriptionResource.GetGiVersionAsync(AzureLocation,string,CancellationToken)"/> instead.</description>
-        /// </item>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="location"> Location name. </param>
-        /// <param name="giversionname"> GiVersion name. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> or <paramref name="giversionname"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="giversionname"/> is an empty string, and was expected to be non-empty. </exception>
-        [ForwardsClientCalls]
-        public static async Task<Response<GiVersionResource>> GetGiVersionAsync(this SubscriptionResource subscriptionResource, AzureLocation location, string giversionname, CancellationToken cancellationToken = default)
-        {
-            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
-
-            return await GetMockableOracleSubscriptionResource(subscriptionResource).GetGiVersionAsync(location, giversionname, cancellationToken).ConfigureAwait(false);
-        }
-
-        /// <summary>
-        /// Get a GiVersion
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Oracle.Database/locations/{location}/giVersions/{giversionname}</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>GiVersions_Get</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2023-09-01-preview</description>
-        /// </item>
-        /// <item>
-        /// <term>Resource</term>
-        /// <description><see cref="GiVersionResource"/></description>
-        /// </item>
-        /// </list>
-        /// <item>
-        /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableOracleSubscriptionResource.GetGiVersion(AzureLocation,string,CancellationToken)"/> instead.</description>
-        /// </item>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="location"> Location name. </param>
-        /// <param name="giversionname"> GiVersion name. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> or <paramref name="giversionname"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="giversionname"/> is an empty string, and was expected to be non-empty. </exception>
-        [ForwardsClientCalls]
-        public static Response<GiVersionResource> GetGiVersion(this SubscriptionResource subscriptionResource, AzureLocation location, string giversionname, CancellationToken cancellationToken = default)
-        {
-            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
-
-            return GetMockableOracleSubscriptionResource(subscriptionResource).GetGiVersion(location, giversionname, cancellationToken);
-        }
-
-        /// <summary>
         /// Gets an object representing a OracleSubscriptionResource along with the instance operations that can be performed on it in the SubscriptionResource.
         /// <item>
         /// <term>Mocking</term>
@@ -953,6 +456,204 @@ namespace Azure.ResourceManager.Oracle
             Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
 
             return GetMockableOracleSubscriptionResource(subscriptionResource).GetCloudVmClusters(cancellationToken);
+        }
+
+        /// <summary>
+        /// List DbSystemShape resources by Location
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Oracle.Database/locations/{location}/dbSystemShapes</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>DbSystemShapes_ListByLocation</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01-preview</description>
+        /// </item>
+        /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableOracleSubscriptionResource.GetDbSystemShapesByLocation(AzureLocation,CancellationToken)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="location"> Location name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
+        /// <returns> An async collection of <see cref="DbSystemShape"/> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<DbSystemShape> GetDbSystemShapesByLocationAsync(this SubscriptionResource subscriptionResource, AzureLocation location, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
+
+            return GetMockableOracleSubscriptionResource(subscriptionResource).GetDbSystemShapesByLocationAsync(location, cancellationToken);
+        }
+
+        /// <summary>
+        /// List DbSystemShape resources by Location
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Oracle.Database/locations/{location}/dbSystemShapes</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>DbSystemShapes_ListByLocation</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01-preview</description>
+        /// </item>
+        /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableOracleSubscriptionResource.GetDbSystemShapesByLocation(AzureLocation,CancellationToken)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="location"> Location name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
+        /// <returns> A collection of <see cref="DbSystemShape"/> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<DbSystemShape> GetDbSystemShapesByLocation(this SubscriptionResource subscriptionResource, AzureLocation location, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
+
+            return GetMockableOracleSubscriptionResource(subscriptionResource).GetDbSystemShapesByLocation(location, cancellationToken);
+        }
+
+        /// <summary>
+        /// List DnsPrivateView resources by Location
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Oracle.Database/locations/{location}/dnsPrivateViews</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>DnsPrivateViews_ListByLocation</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01-preview</description>
+        /// </item>
+        /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableOracleSubscriptionResource.GetDnsPrivateViewsByLocation(AzureLocation,CancellationToken)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="location"> Location name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
+        /// <returns> An async collection of <see cref="DnsPrivateView"/> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<DnsPrivateView> GetDnsPrivateViewsByLocationAsync(this SubscriptionResource subscriptionResource, AzureLocation location, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
+
+            return GetMockableOracleSubscriptionResource(subscriptionResource).GetDnsPrivateViewsByLocationAsync(location, cancellationToken);
+        }
+
+        /// <summary>
+        /// List DnsPrivateView resources by Location
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Oracle.Database/locations/{location}/dnsPrivateViews</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>DnsPrivateViews_ListByLocation</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01-preview</description>
+        /// </item>
+        /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableOracleSubscriptionResource.GetDnsPrivateViewsByLocation(AzureLocation,CancellationToken)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="location"> Location name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
+        /// <returns> A collection of <see cref="DnsPrivateView"/> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<DnsPrivateView> GetDnsPrivateViewsByLocation(this SubscriptionResource subscriptionResource, AzureLocation location, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
+
+            return GetMockableOracleSubscriptionResource(subscriptionResource).GetDnsPrivateViewsByLocation(location, cancellationToken);
+        }
+
+        /// <summary>
+        /// List GiVersion resources by Location
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Oracle.Database/locations/{location}/giVersions</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>GiVersions_ListByLocation</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01-preview</description>
+        /// </item>
+        /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableOracleSubscriptionResource.GetGiVersionsByLocation(AzureLocation,CancellationToken)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="location"> Location name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
+        /// <returns> An async collection of <see cref="GiVersion"/> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<GiVersion> GetGiVersionsByLocationAsync(this SubscriptionResource subscriptionResource, AzureLocation location, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
+
+            return GetMockableOracleSubscriptionResource(subscriptionResource).GetGiVersionsByLocationAsync(location, cancellationToken);
+        }
+
+        /// <summary>
+        /// List GiVersion resources by Location
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Oracle.Database/locations/{location}/giVersions</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>GiVersions_ListByLocation</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01-preview</description>
+        /// </item>
+        /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableOracleSubscriptionResource.GetGiVersionsByLocation(AzureLocation,CancellationToken)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="location"> Location name. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
+        /// <returns> A collection of <see cref="GiVersion"/> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<GiVersion> GetGiVersionsByLocation(this SubscriptionResource subscriptionResource, AzureLocation location, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
+
+            return GetMockableOracleSubscriptionResource(subscriptionResource).GetGiVersionsByLocation(location, cancellationToken);
         }
     }
 }

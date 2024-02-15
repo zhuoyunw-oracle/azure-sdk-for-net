@@ -12,18 +12,18 @@ using System.Text.Json;
 using Azure.Core;
 using Azure.ResourceManager.Models;
 
-namespace Azure.ResourceManager.Oracle
+namespace Azure.ResourceManager.Oracle.Models
 {
-    public partial class DbSystemShapeData : IUtf8JsonSerializable, IJsonModel<DbSystemShapeData>
+    public partial class DbSystemShape : IUtf8JsonSerializable, IJsonModel<DbSystemShape>
     {
-        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer) => ((IJsonModel<DbSystemShapeData>)this).Write(writer, new ModelReaderWriterOptions("W"));
+        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer) => ((IJsonModel<DbSystemShape>)this).Write(writer, new ModelReaderWriterOptions("W"));
 
-        void IJsonModel<DbSystemShapeData>.Write(Utf8JsonWriter writer, ModelReaderWriterOptions options)
+        void IJsonModel<DbSystemShape>.Write(Utf8JsonWriter writer, ModelReaderWriterOptions options)
         {
-            var format = options.Format == "W" ? ((IPersistableModel<DbSystemShapeData>)this).GetFormatFromOptions(options) : options.Format;
+            var format = options.Format == "W" ? ((IPersistableModel<DbSystemShape>)this).GetFormatFromOptions(options) : options.Format;
             if (format != "J")
             {
-                throw new FormatException($"The model {nameof(DbSystemShapeData)} does not support '{format}' format.");
+                throw new FormatException($"The model {nameof(DbSystemShape)} does not support '{format}' format.");
             }
 
             writer.WriteStartObject();
@@ -168,19 +168,19 @@ namespace Azure.ResourceManager.Oracle
             writer.WriteEndObject();
         }
 
-        DbSystemShapeData IJsonModel<DbSystemShapeData>.Create(ref Utf8JsonReader reader, ModelReaderWriterOptions options)
+        DbSystemShape IJsonModel<DbSystemShape>.Create(ref Utf8JsonReader reader, ModelReaderWriterOptions options)
         {
-            var format = options.Format == "W" ? ((IPersistableModel<DbSystemShapeData>)this).GetFormatFromOptions(options) : options.Format;
+            var format = options.Format == "W" ? ((IPersistableModel<DbSystemShape>)this).GetFormatFromOptions(options) : options.Format;
             if (format != "J")
             {
-                throw new FormatException($"The model {nameof(DbSystemShapeData)} does not support '{format}' format.");
+                throw new FormatException($"The model {nameof(DbSystemShape)} does not support '{format}' format.");
             }
 
             using JsonDocument document = JsonDocument.ParseValue(ref reader);
-            return DeserializeDbSystemShapeData(document.RootElement, options);
+            return DeserializeDbSystemShape(document.RootElement, options);
         }
 
-        internal static DbSystemShapeData DeserializeDbSystemShapeData(JsonElement element, ModelReaderWriterOptions options = null)
+        internal static DbSystemShape DeserializeDbSystemShape(JsonElement element, ModelReaderWriterOptions options = null)
         {
             options ??= new ModelReaderWriterOptions("W");
 
@@ -434,38 +434,38 @@ namespace Azure.ResourceManager.Oracle
                 }
             }
             serializedAdditionalRawData = additionalPropertiesDictionary;
-            return new DbSystemShapeData(id, name, type, systemData.Value, shapeFamily.Value, Optional.ToNullable(availableCoreCount), Optional.ToNullable(minimumCoreCount), Optional.ToNullable(runtimeMinimumCoreCount), Optional.ToNullable(coreCountIncrement), Optional.ToNullable(minStorageCount), Optional.ToNullable(maxStorageCount), Optional.ToNullable(availableDataStoragePerServerInTbs), Optional.ToNullable(availableMemoryPerNodeInGbs), Optional.ToNullable(availableDbNodePerNodeInGbs), Optional.ToNullable(minCoreCountPerNode), Optional.ToNullable(availableMemoryInGbs), Optional.ToNullable(minMemoryPerNodeInGbs), Optional.ToNullable(availableDbNodeStorageInGbs), Optional.ToNullable(minDbNodeStoragePerNodeInGbs), Optional.ToNullable(availableDataStorageInTbs), Optional.ToNullable(minDataStorageInTbs), Optional.ToNullable(minimumNodeCount), Optional.ToNullable(maximumNodeCount), Optional.ToNullable(availableCoreCountPerNode), serializedAdditionalRawData);
+            return new DbSystemShape(id, name, type, systemData.Value, shapeFamily.Value, Optional.ToNullable(availableCoreCount), Optional.ToNullable(minimumCoreCount), Optional.ToNullable(runtimeMinimumCoreCount), Optional.ToNullable(coreCountIncrement), Optional.ToNullable(minStorageCount), Optional.ToNullable(maxStorageCount), Optional.ToNullable(availableDataStoragePerServerInTbs), Optional.ToNullable(availableMemoryPerNodeInGbs), Optional.ToNullable(availableDbNodePerNodeInGbs), Optional.ToNullable(minCoreCountPerNode), Optional.ToNullable(availableMemoryInGbs), Optional.ToNullable(minMemoryPerNodeInGbs), Optional.ToNullable(availableDbNodeStorageInGbs), Optional.ToNullable(minDbNodeStoragePerNodeInGbs), Optional.ToNullable(availableDataStorageInTbs), Optional.ToNullable(minDataStorageInTbs), Optional.ToNullable(minimumNodeCount), Optional.ToNullable(maximumNodeCount), Optional.ToNullable(availableCoreCountPerNode), serializedAdditionalRawData);
         }
 
-        BinaryData IPersistableModel<DbSystemShapeData>.Write(ModelReaderWriterOptions options)
+        BinaryData IPersistableModel<DbSystemShape>.Write(ModelReaderWriterOptions options)
         {
-            var format = options.Format == "W" ? ((IPersistableModel<DbSystemShapeData>)this).GetFormatFromOptions(options) : options.Format;
+            var format = options.Format == "W" ? ((IPersistableModel<DbSystemShape>)this).GetFormatFromOptions(options) : options.Format;
 
             switch (format)
             {
                 case "J":
                     return ModelReaderWriter.Write(this, options);
                 default:
-                    throw new FormatException($"The model {nameof(DbSystemShapeData)} does not support '{options.Format}' format.");
+                    throw new FormatException($"The model {nameof(DbSystemShape)} does not support '{options.Format}' format.");
             }
         }
 
-        DbSystemShapeData IPersistableModel<DbSystemShapeData>.Create(BinaryData data, ModelReaderWriterOptions options)
+        DbSystemShape IPersistableModel<DbSystemShape>.Create(BinaryData data, ModelReaderWriterOptions options)
         {
-            var format = options.Format == "W" ? ((IPersistableModel<DbSystemShapeData>)this).GetFormatFromOptions(options) : options.Format;
+            var format = options.Format == "W" ? ((IPersistableModel<DbSystemShape>)this).GetFormatFromOptions(options) : options.Format;
 
             switch (format)
             {
                 case "J":
                     {
                         using JsonDocument document = JsonDocument.Parse(data);
-                        return DeserializeDbSystemShapeData(document.RootElement, options);
+                        return DeserializeDbSystemShape(document.RootElement, options);
                     }
                 default:
-                    throw new FormatException($"The model {nameof(DbSystemShapeData)} does not support '{options.Format}' format.");
+                    throw new FormatException($"The model {nameof(DbSystemShape)} does not support '{options.Format}' format.");
             }
         }
 
-        string IPersistableModel<DbSystemShapeData>.GetFormatFromOptions(ModelReaderWriterOptions options) => "J";
+        string IPersistableModel<DbSystemShape>.GetFormatFromOptions(ModelReaderWriterOptions options) => "J";
     }
 }

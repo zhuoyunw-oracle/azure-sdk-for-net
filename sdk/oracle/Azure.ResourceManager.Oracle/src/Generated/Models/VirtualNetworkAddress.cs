@@ -9,15 +9,11 @@ using System;
 using System.Collections.Generic;
 using Azure.Core;
 using Azure.ResourceManager.Models;
-using Azure.ResourceManager.Oracle.Models;
 
-namespace Azure.ResourceManager.Oracle
+namespace Azure.ResourceManager.Oracle.Models
 {
-    /// <summary>
-    /// A class representing the VirtualNetworkAddress data model.
-    /// Virtual IP resource belonging to a vm cluster resource.
-    /// </summary>
-    public partial class VirtualNetworkAddressData : ResourceData
+    /// <summary> Virtual IP resource belonging to a vm cluster resource. </summary>
+    public partial class VirtualNetworkAddress : ResourceData
     {
         /// <summary>
         /// Keeps track of any properties unknown to the library.
@@ -51,12 +47,12 @@ namespace Azure.ResourceManager.Oracle
         /// </summary>
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
-        /// <summary> Initializes a new instance of <see cref="VirtualNetworkAddressData"/>. </summary>
-        public VirtualNetworkAddressData()
+        /// <summary> Initializes a new instance of <see cref="VirtualNetworkAddress"/>. </summary>
+        public VirtualNetworkAddress()
         {
         }
 
-        /// <summary> Initializes a new instance of <see cref="VirtualNetworkAddressData"/>. </summary>
+        /// <summary> Initializes a new instance of <see cref="VirtualNetworkAddress"/>. </summary>
         /// <param name="id"> The id. </param>
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
@@ -69,7 +65,7 @@ namespace Azure.ResourceManager.Oracle
         /// <param name="provisioningState"> virtual network address provisioning state. </param>
         /// <param name="timeAssigned"> The date and time when the create operation for the application virtual IP (VIP) address completed. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal VirtualNetworkAddressData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, string ipAddress, string vmOcid, string ocid, string domain, string lifecycleDetails, VirtualNetworkAddressProvisioningState? provisioningState, DateTimeOffset? timeAssigned, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
+        internal VirtualNetworkAddress(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, string ipAddress, string vmOcid, string ocid, string domain, string lifecycleDetails, VirtualNetworkAddressProvisioningState? provisioningState, DateTimeOffset? timeAssigned, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
         {
             IPAddress = ipAddress;
             VmOcid = vmOcid;

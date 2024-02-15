@@ -40,6 +40,8 @@ namespace Azure.ResourceManager.Oracle
 
         private readonly ClientDiagnostics _cloudVmClusterClientDiagnostics;
         private readonly CloudVmClustersRestOperations _cloudVmClusterRestClient;
+        private readonly ClientDiagnostics _virtualNetworkAddressesClientDiagnostics;
+        private readonly VirtualNetworkAddressesRestOperations _virtualNetworkAddressesRestClient;
         private readonly CloudVmClusterData _data;
 
         /// <summary> Gets the resource type for the operations. </summary>
@@ -67,6 +69,8 @@ namespace Azure.ResourceManager.Oracle
             _cloudVmClusterClientDiagnostics = new ClientDiagnostics("Azure.ResourceManager.Oracle", ResourceType.Namespace, Diagnostics);
             TryGetApiVersion(ResourceType, out string cloudVmClusterApiVersion);
             _cloudVmClusterRestClient = new CloudVmClustersRestOperations(Pipeline, Diagnostics.ApplicationId, Endpoint, cloudVmClusterApiVersion);
+            _virtualNetworkAddressesClientDiagnostics = new ClientDiagnostics("Azure.ResourceManager.Oracle", ProviderConstants.DefaultProviderNamespace, Diagnostics);
+            _virtualNetworkAddressesRestClient = new VirtualNetworkAddressesRestOperations(Pipeline, Diagnostics.ApplicationId, Endpoint);
 #if DEBUG
 			ValidateResourceId(Id);
 #endif
@@ -91,144 +95,6 @@ namespace Azure.ResourceManager.Oracle
         {
             if (id.ResourceType != ResourceType)
                 throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, "Invalid resource type {0} expected {1}", id.ResourceType, ResourceType), nameof(id));
-        }
-
-        /// <summary> Gets a collection of DbNodeResources in the CloudVmCluster. </summary>
-        /// <returns> An object representing collection of DbNodeResources and their operations over a DbNodeResource. </returns>
-        public virtual DbNodeCollection GetDbNodes()
-        {
-            return GetCachedClient(client => new DbNodeCollection(client, Id));
-        }
-
-        /// <summary>
-        /// Get a DbNode
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Oracle.Database/cloudVmClusters/{cloudvmclustername}/dbNodes/{dbnodeocid}</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>DbNodes_Get</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2023-09-01-preview</description>
-        /// </item>
-        /// <item>
-        /// <term>Resource</term>
-        /// <description><see cref="DbNodeResource"/></description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="dbnodeocid"> DbNode OCID. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="dbnodeocid"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="dbnodeocid"/> is an empty string, and was expected to be non-empty. </exception>
-        [ForwardsClientCalls]
-        public virtual async Task<Response<DbNodeResource>> GetDbNodeAsync(string dbnodeocid, CancellationToken cancellationToken = default)
-        {
-            return await GetDbNodes().GetAsync(dbnodeocid, cancellationToken).ConfigureAwait(false);
-        }
-
-        /// <summary>
-        /// Get a DbNode
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Oracle.Database/cloudVmClusters/{cloudvmclustername}/dbNodes/{dbnodeocid}</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>DbNodes_Get</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2023-09-01-preview</description>
-        /// </item>
-        /// <item>
-        /// <term>Resource</term>
-        /// <description><see cref="DbNodeResource"/></description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="dbnodeocid"> DbNode OCID. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="dbnodeocid"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="dbnodeocid"/> is an empty string, and was expected to be non-empty. </exception>
-        [ForwardsClientCalls]
-        public virtual Response<DbNodeResource> GetDbNode(string dbnodeocid, CancellationToken cancellationToken = default)
-        {
-            return GetDbNodes().Get(dbnodeocid, cancellationToken);
-        }
-
-        /// <summary> Gets a collection of VirtualNetworkAddressResources in the CloudVmCluster. </summary>
-        /// <returns> An object representing collection of VirtualNetworkAddressResources and their operations over a VirtualNetworkAddressResource. </returns>
-        public virtual VirtualNetworkAddressCollection GetVirtualNetworkAddresses()
-        {
-            return GetCachedClient(client => new VirtualNetworkAddressCollection(client, Id));
-        }
-
-        /// <summary>
-        /// Get a VirtualNetworkAddress
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Oracle.Database/cloudVmClusters/{cloudvmclustername}/virtualNetworkAddresses/{virtualnetworkaddressname}</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>VirtualNetworkAddresses_Get</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2023-09-01-preview</description>
-        /// </item>
-        /// <item>
-        /// <term>Resource</term>
-        /// <description><see cref="VirtualNetworkAddressResource"/></description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="virtualnetworkaddressname"> Virtual IP address hostname. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="virtualnetworkaddressname"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="virtualnetworkaddressname"/> is an empty string, and was expected to be non-empty. </exception>
-        [ForwardsClientCalls]
-        public virtual async Task<Response<VirtualNetworkAddressResource>> GetVirtualNetworkAddressAsync(string virtualnetworkaddressname, CancellationToken cancellationToken = default)
-        {
-            return await GetVirtualNetworkAddresses().GetAsync(virtualnetworkaddressname, cancellationToken).ConfigureAwait(false);
-        }
-
-        /// <summary>
-        /// Get a VirtualNetworkAddress
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Oracle.Database/cloudVmClusters/{cloudvmclustername}/virtualNetworkAddresses/{virtualnetworkaddressname}</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>VirtualNetworkAddresses_Get</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2023-09-01-preview</description>
-        /// </item>
-        /// <item>
-        /// <term>Resource</term>
-        /// <description><see cref="VirtualNetworkAddressResource"/></description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="virtualnetworkaddressname"> Virtual IP address hostname. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="virtualnetworkaddressname"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="virtualnetworkaddressname"/> is an empty string, and was expected to be non-empty. </exception>
-        [ForwardsClientCalls]
-        public virtual Response<VirtualNetworkAddressResource> GetVirtualNetworkAddress(string virtualnetworkaddressname, CancellationToken cancellationToken = default)
-        {
-            return GetVirtualNetworkAddresses().Get(virtualnetworkaddressname, cancellationToken);
         }
 
         /// <summary>
@@ -726,6 +592,96 @@ namespace Azure.ResourceManager.Oracle
             {
                 var response = _cloudVmClusterRestClient.RemoveVms(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, body, cancellationToken);
                 var operation = new OracleArmOperation<CloudVmClusterResource>(new CloudVmClusterOperationSource(Client), _cloudVmClusterClientDiagnostics, Pipeline, _cloudVmClusterRestClient.CreateRemoveVmsRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, body).Request, response, OperationFinalStateVia.Location);
+                if (waitUntil == WaitUntil.Completed)
+                    operation.WaitForCompletion(cancellationToken);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Create a VirtualNetworkAddress
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Oracle.Database/cloudVmClusters/{cloudvmclustername}/virtualNetworkAddresses/{virtualnetworkaddressname}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualNetworkAddresses_CreateOrUpdate</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01-preview</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualnetworkaddressname"> Virtual IP address hostname. </param>
+        /// <param name="resource"> Resource create parameters. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="virtualnetworkaddressname"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="virtualnetworkaddressname"/> or <paramref name="resource"/> is null. </exception>
+        public virtual async Task<ArmOperation<VirtualNetworkAddress>> CreateOrUpdateVirtualNetworkAddressAsync(WaitUntil waitUntil, string virtualnetworkaddressname, VirtualNetworkAddress resource, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(virtualnetworkaddressname, nameof(virtualnetworkaddressname));
+            Argument.AssertNotNull(resource, nameof(resource));
+
+            using var scope = _virtualNetworkAddressesClientDiagnostics.CreateScope("CloudVmClusterResource.CreateOrUpdateVirtualNetworkAddress");
+            scope.Start();
+            try
+            {
+                var response = await _virtualNetworkAddressesRestClient.CreateOrUpdateAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, virtualnetworkaddressname, resource, cancellationToken).ConfigureAwait(false);
+                var operation = new OracleArmOperation<VirtualNetworkAddress>(new VirtualNetworkAddressOperationSource(), _virtualNetworkAddressesClientDiagnostics, Pipeline, _virtualNetworkAddressesRestClient.CreateCreateOrUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, virtualnetworkaddressname, resource).Request, response, OperationFinalStateVia.AzureAsyncOperation);
+                if (waitUntil == WaitUntil.Completed)
+                    await operation.WaitForCompletionAsync(cancellationToken).ConfigureAwait(false);
+                return operation;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Create a VirtualNetworkAddress
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Oracle.Database/cloudVmClusters/{cloudvmclustername}/virtualNetworkAddresses/{virtualnetworkaddressname}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>VirtualNetworkAddresses_CreateOrUpdate</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2023-09-01-preview</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
+        /// <param name="virtualnetworkaddressname"> Virtual IP address hostname. </param>
+        /// <param name="resource"> Resource create parameters. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="virtualnetworkaddressname"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="virtualnetworkaddressname"/> or <paramref name="resource"/> is null. </exception>
+        public virtual ArmOperation<VirtualNetworkAddress> CreateOrUpdateVirtualNetworkAddress(WaitUntil waitUntil, string virtualnetworkaddressname, VirtualNetworkAddress resource, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(virtualnetworkaddressname, nameof(virtualnetworkaddressname));
+            Argument.AssertNotNull(resource, nameof(resource));
+
+            using var scope = _virtualNetworkAddressesClientDiagnostics.CreateScope("CloudVmClusterResource.CreateOrUpdateVirtualNetworkAddress");
+            scope.Start();
+            try
+            {
+                var response = _virtualNetworkAddressesRestClient.CreateOrUpdate(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, virtualnetworkaddressname, resource, cancellationToken);
+                var operation = new OracleArmOperation<VirtualNetworkAddress>(new VirtualNetworkAddressOperationSource(), _virtualNetworkAddressesClientDiagnostics, Pipeline, _virtualNetworkAddressesRestClient.CreateCreateOrUpdateRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, virtualnetworkaddressname, resource).Request, response, OperationFinalStateVia.AzureAsyncOperation);
                 if (waitUntil == WaitUntil.Completed)
                     operation.WaitForCompletion(cancellationToken);
                 return operation;

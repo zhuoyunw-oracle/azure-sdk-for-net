@@ -10,31 +10,22 @@ using System.Threading;
 using System.Threading.Tasks;
 using Azure;
 using Azure.Core;
-using Azure.ResourceManager;
+using Azure.ResourceManager.Oracle.Models;
 
 namespace Azure.ResourceManager.Oracle
 {
-    internal class VirtualNetworkAddressOperationSource : IOperationSource<VirtualNetworkAddressResource>
+    internal class VirtualNetworkAddressOperationSource : IOperationSource<VirtualNetworkAddress>
     {
-        private readonly ArmClient _client;
-
-        internal VirtualNetworkAddressOperationSource(ArmClient client)
-        {
-            _client = client;
-        }
-
-        VirtualNetworkAddressResource IOperationSource<VirtualNetworkAddressResource>.CreateResult(Response response, CancellationToken cancellationToken)
+        VirtualNetworkAddress IOperationSource<VirtualNetworkAddress>.CreateResult(Response response, CancellationToken cancellationToken)
         {
             using var document = JsonDocument.Parse(response.ContentStream);
-            var data = VirtualNetworkAddressData.DeserializeVirtualNetworkAddressData(document.RootElement);
-            return new VirtualNetworkAddressResource(_client, data);
+            return VirtualNetworkAddress.DeserializeVirtualNetworkAddress(document.RootElement);
         }
 
-        async ValueTask<VirtualNetworkAddressResource> IOperationSource<VirtualNetworkAddressResource>.CreateResultAsync(Response response, CancellationToken cancellationToken)
+        async ValueTask<VirtualNetworkAddress> IOperationSource<VirtualNetworkAddress>.CreateResultAsync(Response response, CancellationToken cancellationToken)
         {
             using var document = await JsonDocument.ParseAsync(response.ContentStream, default, cancellationToken).ConfigureAwait(false);
-            var data = VirtualNetworkAddressData.DeserializeVirtualNetworkAddressData(document.RootElement);
-            return new VirtualNetworkAddressResource(_client, data);
+            return VirtualNetworkAddress.DeserializeVirtualNetworkAddress(document.RootElement);
         }
     }
 }

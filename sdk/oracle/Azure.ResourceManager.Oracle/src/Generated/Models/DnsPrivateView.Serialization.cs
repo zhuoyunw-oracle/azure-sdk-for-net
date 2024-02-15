@@ -11,20 +11,19 @@ using System.Collections.Generic;
 using System.Text.Json;
 using Azure.Core;
 using Azure.ResourceManager.Models;
-using Azure.ResourceManager.Oracle.Models;
 
-namespace Azure.ResourceManager.Oracle
+namespace Azure.ResourceManager.Oracle.Models
 {
-    public partial class DnsPrivateZoneData : IUtf8JsonSerializable, IJsonModel<DnsPrivateZoneData>
+    public partial class DnsPrivateView : IUtf8JsonSerializable, IJsonModel<DnsPrivateView>
     {
-        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer) => ((IJsonModel<DnsPrivateZoneData>)this).Write(writer, new ModelReaderWriterOptions("W"));
+        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer) => ((IJsonModel<DnsPrivateView>)this).Write(writer, new ModelReaderWriterOptions("W"));
 
-        void IJsonModel<DnsPrivateZoneData>.Write(Utf8JsonWriter writer, ModelReaderWriterOptions options)
+        void IJsonModel<DnsPrivateView>.Write(Utf8JsonWriter writer, ModelReaderWriterOptions options)
         {
-            var format = options.Format == "W" ? ((IPersistableModel<DnsPrivateZoneData>)this).GetFormatFromOptions(options) : options.Format;
+            var format = options.Format == "W" ? ((IPersistableModel<DnsPrivateView>)this).GetFormatFromOptions(options) : options.Format;
             if (format != "J")
             {
-                throw new FormatException($"The model {nameof(DnsPrivateZoneData)} does not support '{format}' format.");
+                throw new FormatException($"The model {nameof(DnsPrivateView)} does not support '{format}' format.");
             }
 
             writer.WriteStartObject();
@@ -55,6 +54,11 @@ namespace Azure.ResourceManager.Oracle
                 writer.WritePropertyName("ocid"u8);
                 writer.WriteStringValue(Ocid);
             }
+            if (options.Format != "W" && Optional.IsDefined(DisplayName))
+            {
+                writer.WritePropertyName("displayName"u8);
+                writer.WriteStringValue(DisplayName);
+            }
             if (options.Format != "W" && Optional.IsDefined(IsProtected))
             {
                 writer.WritePropertyName("isProtected"u8);
@@ -70,30 +74,15 @@ namespace Azure.ResourceManager.Oracle
                 writer.WritePropertyName("self"u8);
                 writer.WriteStringValue(Self);
             }
-            if (options.Format != "W" && Optional.IsDefined(Serial))
-            {
-                writer.WritePropertyName("serial"u8);
-                writer.WriteNumberValue(Serial.Value);
-            }
-            if (options.Format != "W" && Optional.IsDefined(Version))
-            {
-                writer.WritePropertyName("version"u8);
-                writer.WriteStringValue(Version);
-            }
-            if (options.Format != "W" && Optional.IsDefined(ViewId))
-            {
-                writer.WritePropertyName("viewId"u8);
-                writer.WriteStringValue(ViewId);
-            }
-            if (options.Format != "W" && Optional.IsDefined(ZoneType))
-            {
-                writer.WritePropertyName("zoneType"u8);
-                writer.WriteStringValue(ZoneType.Value.ToString());
-            }
             if (options.Format != "W" && Optional.IsDefined(TimeCreated))
             {
                 writer.WritePropertyName("timeCreated"u8);
                 writer.WriteStringValue(TimeCreated.Value, "O");
+            }
+            if (options.Format != "W" && Optional.IsDefined(TimeUpdated))
+            {
+                writer.WritePropertyName("timeUpdated"u8);
+                writer.WriteStringValue(TimeUpdated.Value, "O");
             }
             writer.WriteEndObject();
             if (options.Format != "W" && _serializedAdditionalRawData != null)
@@ -114,19 +103,19 @@ namespace Azure.ResourceManager.Oracle
             writer.WriteEndObject();
         }
 
-        DnsPrivateZoneData IJsonModel<DnsPrivateZoneData>.Create(ref Utf8JsonReader reader, ModelReaderWriterOptions options)
+        DnsPrivateView IJsonModel<DnsPrivateView>.Create(ref Utf8JsonReader reader, ModelReaderWriterOptions options)
         {
-            var format = options.Format == "W" ? ((IPersistableModel<DnsPrivateZoneData>)this).GetFormatFromOptions(options) : options.Format;
+            var format = options.Format == "W" ? ((IPersistableModel<DnsPrivateView>)this).GetFormatFromOptions(options) : options.Format;
             if (format != "J")
             {
-                throw new FormatException($"The model {nameof(DnsPrivateZoneData)} does not support '{format}' format.");
+                throw new FormatException($"The model {nameof(DnsPrivateView)} does not support '{format}' format.");
             }
 
             using JsonDocument document = JsonDocument.ParseValue(ref reader);
-            return DeserializeDnsPrivateZoneData(document.RootElement, options);
+            return DeserializeDnsPrivateView(document.RootElement, options);
         }
 
-        internal static DnsPrivateZoneData DeserializeDnsPrivateZoneData(JsonElement element, ModelReaderWriterOptions options = null)
+        internal static DnsPrivateView DeserializeDnsPrivateView(JsonElement element, ModelReaderWriterOptions options = null)
         {
             options ??= new ModelReaderWriterOptions("W");
 
@@ -139,14 +128,12 @@ namespace Azure.ResourceManager.Oracle
             ResourceType type = default;
             Optional<SystemData> systemData = default;
             Optional<string> ocid = default;
+            Optional<string> displayName = default;
             Optional<bool> isProtected = default;
-            Optional<DnsPrivateZonesProvisioningState> provisioningState = default;
+            Optional<DnsPrivateViewsProvisioningState> provisioningState = default;
             Optional<string> self = default;
-            Optional<int> serial = default;
-            Optional<string> version = default;
-            Optional<string> viewId = default;
-            Optional<ZoneType> zoneType = default;
             Optional<DateTimeOffset> timeCreated = default;
+            Optional<DateTimeOffset> timeUpdated = default;
             IDictionary<string, BinaryData> serializedAdditionalRawData = default;
             Dictionary<string, BinaryData> additionalPropertiesDictionary = new Dictionary<string, BinaryData>();
             foreach (var property in element.EnumerateObject())
@@ -189,6 +176,11 @@ namespace Azure.ResourceManager.Oracle
                             ocid = property0.Value.GetString();
                             continue;
                         }
+                        if (property0.NameEquals("displayName"u8))
+                        {
+                            displayName = property0.Value.GetString();
+                            continue;
+                        }
                         if (property0.NameEquals("isProtected"u8))
                         {
                             if (property0.Value.ValueKind == JsonValueKind.Null)
@@ -204,40 +196,12 @@ namespace Azure.ResourceManager.Oracle
                             {
                                 continue;
                             }
-                            provisioningState = new DnsPrivateZonesProvisioningState(property0.Value.GetString());
+                            provisioningState = new DnsPrivateViewsProvisioningState(property0.Value.GetString());
                             continue;
                         }
                         if (property0.NameEquals("self"u8))
                         {
                             self = property0.Value.GetString();
-                            continue;
-                        }
-                        if (property0.NameEquals("serial"u8))
-                        {
-                            if (property0.Value.ValueKind == JsonValueKind.Null)
-                            {
-                                continue;
-                            }
-                            serial = property0.Value.GetInt32();
-                            continue;
-                        }
-                        if (property0.NameEquals("version"u8))
-                        {
-                            version = property0.Value.GetString();
-                            continue;
-                        }
-                        if (property0.NameEquals("viewId"u8))
-                        {
-                            viewId = property0.Value.GetString();
-                            continue;
-                        }
-                        if (property0.NameEquals("zoneType"u8))
-                        {
-                            if (property0.Value.ValueKind == JsonValueKind.Null)
-                            {
-                                continue;
-                            }
-                            zoneType = new ZoneType(property0.Value.GetString());
                             continue;
                         }
                         if (property0.NameEquals("timeCreated"u8))
@@ -249,6 +213,15 @@ namespace Azure.ResourceManager.Oracle
                             timeCreated = property0.Value.GetDateTimeOffset("O");
                             continue;
                         }
+                        if (property0.NameEquals("timeUpdated"u8))
+                        {
+                            if (property0.Value.ValueKind == JsonValueKind.Null)
+                            {
+                                continue;
+                            }
+                            timeUpdated = property0.Value.GetDateTimeOffset("O");
+                            continue;
+                        }
                     }
                     continue;
                 }
@@ -258,38 +231,38 @@ namespace Azure.ResourceManager.Oracle
                 }
             }
             serializedAdditionalRawData = additionalPropertiesDictionary;
-            return new DnsPrivateZoneData(id, name, type, systemData.Value, ocid.Value, Optional.ToNullable(isProtected), Optional.ToNullable(provisioningState), self.Value, Optional.ToNullable(serial), version.Value, viewId.Value, Optional.ToNullable(zoneType), Optional.ToNullable(timeCreated), serializedAdditionalRawData);
+            return new DnsPrivateView(id, name, type, systemData.Value, ocid.Value, displayName.Value, Optional.ToNullable(isProtected), Optional.ToNullable(provisioningState), self.Value, Optional.ToNullable(timeCreated), Optional.ToNullable(timeUpdated), serializedAdditionalRawData);
         }
 
-        BinaryData IPersistableModel<DnsPrivateZoneData>.Write(ModelReaderWriterOptions options)
+        BinaryData IPersistableModel<DnsPrivateView>.Write(ModelReaderWriterOptions options)
         {
-            var format = options.Format == "W" ? ((IPersistableModel<DnsPrivateZoneData>)this).GetFormatFromOptions(options) : options.Format;
+            var format = options.Format == "W" ? ((IPersistableModel<DnsPrivateView>)this).GetFormatFromOptions(options) : options.Format;
 
             switch (format)
             {
                 case "J":
                     return ModelReaderWriter.Write(this, options);
                 default:
-                    throw new FormatException($"The model {nameof(DnsPrivateZoneData)} does not support '{options.Format}' format.");
+                    throw new FormatException($"The model {nameof(DnsPrivateView)} does not support '{options.Format}' format.");
             }
         }
 
-        DnsPrivateZoneData IPersistableModel<DnsPrivateZoneData>.Create(BinaryData data, ModelReaderWriterOptions options)
+        DnsPrivateView IPersistableModel<DnsPrivateView>.Create(BinaryData data, ModelReaderWriterOptions options)
         {
-            var format = options.Format == "W" ? ((IPersistableModel<DnsPrivateZoneData>)this).GetFormatFromOptions(options) : options.Format;
+            var format = options.Format == "W" ? ((IPersistableModel<DnsPrivateView>)this).GetFormatFromOptions(options) : options.Format;
 
             switch (format)
             {
                 case "J":
                     {
                         using JsonDocument document = JsonDocument.Parse(data);
-                        return DeserializeDnsPrivateZoneData(document.RootElement, options);
+                        return DeserializeDnsPrivateView(document.RootElement, options);
                     }
                 default:
-                    throw new FormatException($"The model {nameof(DnsPrivateZoneData)} does not support '{options.Format}' format.");
+                    throw new FormatException($"The model {nameof(DnsPrivateView)} does not support '{options.Format}' format.");
             }
         }
 
-        string IPersistableModel<DnsPrivateZoneData>.GetFormatFromOptions(ModelReaderWriterOptions options) => "J";
+        string IPersistableModel<DnsPrivateView>.GetFormatFromOptions(ModelReaderWriterOptions options) => "J";
     }
 }

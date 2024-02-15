@@ -7,14 +7,13 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Azure.Core;
-using Azure.ResourceManager.Oracle;
+using Azure.ResourceManager.Models;
 
 namespace Azure.ResourceManager.Oracle.Models
 {
-    /// <summary> The response of a DnsPrivateZone list operation. </summary>
-    internal partial class DnsPrivateZoneListResult
+    /// <summary> GiVersion resource definition. </summary>
+    public partial class GiVersion : ResourceData
     {
         /// <summary>
         /// Keeps track of any properties unknown to the library.
@@ -48,35 +47,25 @@ namespace Azure.ResourceManager.Oracle.Models
         /// </summary>
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
-        /// <summary> Initializes a new instance of <see cref="DnsPrivateZoneListResult"/>. </summary>
-        /// <param name="value"> The DnsPrivateZone items on this page. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="value"/> is null. </exception>
-        internal DnsPrivateZoneListResult(IEnumerable<DnsPrivateZoneData> value)
+        /// <summary> Initializes a new instance of <see cref="GiVersion"/>. </summary>
+        public GiVersion()
         {
-            Argument.AssertNotNull(value, nameof(value));
-
-            Value = value.ToList();
         }
 
-        /// <summary> Initializes a new instance of <see cref="DnsPrivateZoneListResult"/>. </summary>
-        /// <param name="value"> The DnsPrivateZone items on this page. </param>
-        /// <param name="nextLink"> The link to the next page of items. </param>
+        /// <summary> Initializes a new instance of <see cref="GiVersion"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="version"> A valid Oracle Grid Infrastructure (GI) software version. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal DnsPrivateZoneListResult(IReadOnlyList<DnsPrivateZoneData> value, Uri nextLink, IDictionary<string, BinaryData> serializedAdditionalRawData)
+        internal GiVersion(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, string version, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
         {
-            Value = value;
-            NextLink = nextLink;
+            Version = version;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Initializes a new instance of <see cref="DnsPrivateZoneListResult"/> for deserialization. </summary>
-        internal DnsPrivateZoneListResult()
-        {
-        }
-
-        /// <summary> The DnsPrivateZone items on this page. </summary>
-        public IReadOnlyList<DnsPrivateZoneData> Value { get; }
-        /// <summary> The link to the next page of items. </summary>
-        public Uri NextLink { get; }
+        /// <summary> A valid Oracle Grid Infrastructure (GI) software version. </summary>
+        public string Version { get; }
     }
 }

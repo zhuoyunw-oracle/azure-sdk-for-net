@@ -56,7 +56,7 @@ namespace Azure.ResourceManager.Oracle.Models
         /// <param name="monthlyDbServerVersion"> Monthly Db Server version. </param>
         /// <param name="monthlyStorageServerVersion"> Monthly Storage Server version. </param>
         /// <returns> A new <see cref="Oracle.CloudExadataInfrastructureData"/> instance for mocking. </returns>
-        public static CloudExadataInfrastructureData CloudExadataInfrastructureData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, IDictionary<string, string> tags = null, AzureLocation location = default, IEnumerable<string> zones = null, string ocid = null, int? computeCount = null, int? storageCount = null, int? totalStorageSizeInGbs = null, int? availableStorageSizeInGbs = null, string timeCreated = null, string lifecycleDetails = null, MaintenanceWindow maintenanceWindow = null, EstimatedPatchingTime estimatedPatchingTime = null, IEnumerable<CustomerContact> customerContacts = null, CloudExadataInfrastructureProvisioningState? provisioningState = null, string shape = null, Uri ociUri = null, int? cpuCount = null, int? maxCpuCount = null, int? memorySizeInGbs = null, int? maxMemoryInGbs = null, int? dbNodeStorageSizeInGbs = null, int? maxDbNodeStorageSizeInGbs = null, int? dataStorageSizeInTbs = null, double? maxDataStorageInTbs = null, string dbServerVersion = null, string storageServerVersion = null, int? activatedStorageCount = null, int? additionalStorageCount = null, string displayName = null, string lastMaintenanceRunId = null, string nextMaintenanceRunId = null, string monthlyDbServerVersion = null, string monthlyStorageServerVersion = null)
+        public static CloudExadataInfrastructureData CloudExadataInfrastructureData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, IDictionary<string, string> tags = null, AzureLocation location = default, IEnumerable<string> zones = null, string ocid = null, int? computeCount = null, int? storageCount = null, int? totalStorageSizeInGbs = null, int? availableStorageSizeInGbs = null, string timeCreated = null, string lifecycleDetails = null, MaintenanceWindow maintenanceWindow = null, EstimatedPatchingTime estimatedPatchingTime = null, IEnumerable<CustomerContact> customerContacts = null, CloudExadataInfrastructureProvisioningState? provisioningState = null, string shape = null, Uri ociUri = null, int? cpuCount = null, int? maxCpuCount = null, int? memorySizeInGbs = null, int? maxMemoryInGbs = null, int? dbNodeStorageSizeInGbs = null, int? maxDbNodeStorageSizeInGbs = null, double? dataStorageSizeInTbs = null, double? maxDataStorageInTbs = null, string dbServerVersion = null, string storageServerVersion = null, int? activatedStorageCount = null, int? additionalStorageCount = null, string displayName = null, string lastMaintenanceRunId = null, string nextMaintenanceRunId = null, string monthlyDbServerVersion = null, string monthlyStorageServerVersion = null)
         {
             tags ??= new Dictionary<string, string>();
             zones ??= new List<string>();
@@ -164,7 +164,7 @@ namespace Azure.ResourceManager.Oracle.Models
             return new DbIormConfig(dbName, flashCacheLimit, share, serializedAdditionalRawData: null);
         }
 
-        /// <summary> Initializes a new instance of <see cref="Oracle.DbSystemShapeData"/>. </summary>
+        /// <summary> Initializes a new instance of <see cref="Models.DbSystemShape"/>. </summary>
         /// <param name="id"> The id. </param>
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
@@ -189,13 +189,13 @@ namespace Azure.ResourceManager.Oracle.Models
         /// <param name="minimumNodeCount"> The minimum number of database nodes available for this shape. </param>
         /// <param name="maximumNodeCount"> The maximum number of database nodes available for this shape. </param>
         /// <param name="availableCoreCountPerNode"> The maximum number of CPU cores per database node that can be enabled for this shape. Only applicable to the flex Exadata shape and ExaCC Elastic shapes. </param>
-        /// <returns> A new <see cref="Oracle.DbSystemShapeData"/> instance for mocking. </returns>
-        public static DbSystemShapeData DbSystemShapeData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, string shapeFamily = null, int? availableCoreCount = null, int? minimumCoreCount = null, int? runtimeMinimumCoreCount = null, int? coreCountIncrement = null, int? minStorageCount = null, int? maxStorageCount = null, double? availableDataStoragePerServerInTbs = null, int? availableMemoryPerNodeInGbs = null, int? availableDbNodePerNodeInGbs = null, int? minCoreCountPerNode = null, int? availableMemoryInGbs = null, int? minMemoryPerNodeInGbs = null, int? availableDbNodeStorageInGbs = null, int? minDbNodeStoragePerNodeInGbs = null, int? availableDataStorageInTbs = null, int? minDataStorageInTbs = null, int? minimumNodeCount = null, int? maximumNodeCount = null, int? availableCoreCountPerNode = null)
+        /// <returns> A new <see cref="Models.DbSystemShape"/> instance for mocking. </returns>
+        public static DbSystemShape DbSystemShape(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, string shapeFamily = null, int? availableCoreCount = null, int? minimumCoreCount = null, int? runtimeMinimumCoreCount = null, int? coreCountIncrement = null, int? minStorageCount = null, int? maxStorageCount = null, double? availableDataStoragePerServerInTbs = null, int? availableMemoryPerNodeInGbs = null, int? availableDbNodePerNodeInGbs = null, int? minCoreCountPerNode = null, int? availableMemoryInGbs = null, int? minMemoryPerNodeInGbs = null, int? availableDbNodeStorageInGbs = null, int? minDbNodeStoragePerNodeInGbs = null, int? availableDataStorageInTbs = null, int? minDataStorageInTbs = null, int? minimumNodeCount = null, int? maximumNodeCount = null, int? availableCoreCountPerNode = null)
         {
-            return new DbSystemShapeData(id, name, resourceType, systemData, shapeFamily, availableCoreCount, minimumCoreCount, runtimeMinimumCoreCount, coreCountIncrement, minStorageCount, maxStorageCount, availableDataStoragePerServerInTbs, availableMemoryPerNodeInGbs, availableDbNodePerNodeInGbs, minCoreCountPerNode, availableMemoryInGbs, minMemoryPerNodeInGbs, availableDbNodeStorageInGbs, minDbNodeStoragePerNodeInGbs, availableDataStorageInTbs, minDataStorageInTbs, minimumNodeCount, maximumNodeCount, availableCoreCountPerNode, serializedAdditionalRawData: null);
+            return new DbSystemShape(id, name, resourceType, systemData, shapeFamily, availableCoreCount, minimumCoreCount, runtimeMinimumCoreCount, coreCountIncrement, minStorageCount, maxStorageCount, availableDataStoragePerServerInTbs, availableMemoryPerNodeInGbs, availableDbNodePerNodeInGbs, minCoreCountPerNode, availableMemoryInGbs, minMemoryPerNodeInGbs, availableDbNodeStorageInGbs, minDbNodeStoragePerNodeInGbs, availableDataStorageInTbs, minDataStorageInTbs, minimumNodeCount, maximumNodeCount, availableCoreCountPerNode, serializedAdditionalRawData: null);
         }
 
-        /// <summary> Initializes a new instance of <see cref="Oracle.DnsPrivateViewData"/>. </summary>
+        /// <summary> Initializes a new instance of <see cref="Models.DnsPrivateView"/>. </summary>
         /// <param name="id"> The id. </param>
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
@@ -207,42 +207,22 @@ namespace Azure.ResourceManager.Oracle.Models
         /// <param name="self"> The canonical absolute URL of the resource. </param>
         /// <param name="timeCreated"> views timeCreated. </param>
         /// <param name="timeUpdated"> views timeCreated. </param>
-        /// <returns> A new <see cref="Oracle.DnsPrivateViewData"/> instance for mocking. </returns>
-        public static DnsPrivateViewData DnsPrivateViewData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, string ocid = null, string displayName = null, bool? isProtected = null, DnsPrivateViewsProvisioningState? provisioningState = null, string self = null, DateTimeOffset? timeCreated = null, DateTimeOffset? timeUpdated = null)
+        /// <returns> A new <see cref="Models.DnsPrivateView"/> instance for mocking. </returns>
+        public static DnsPrivateView DnsPrivateView(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, string ocid = null, string displayName = null, bool? isProtected = null, DnsPrivateViewsProvisioningState? provisioningState = null, string self = null, DateTimeOffset? timeCreated = null, DateTimeOffset? timeUpdated = null)
         {
-            return new DnsPrivateViewData(id, name, resourceType, systemData, ocid, displayName, isProtected, provisioningState, self, timeCreated, timeUpdated, serializedAdditionalRawData: null);
+            return new DnsPrivateView(id, name, resourceType, systemData, ocid, displayName, isProtected, provisioningState, self, timeCreated, timeUpdated, serializedAdditionalRawData: null);
         }
 
-        /// <summary> Initializes a new instance of <see cref="Oracle.DnsPrivateZoneData"/>. </summary>
-        /// <param name="id"> The id. </param>
-        /// <param name="name"> The name. </param>
-        /// <param name="resourceType"> The resourceType. </param>
-        /// <param name="systemData"> The systemData. </param>
-        /// <param name="ocid"> The OCID of the Zone. </param>
-        /// <param name="isProtected"> A Boolean flag indicating whether or not parts of the resource are unable to be explicitly managed. </param>
-        /// <param name="provisioningState"> Zones lifecycleState. </param>
-        /// <param name="self"> The canonical absolute URL of the resource. </param>
-        /// <param name="serial"> The current serial of the zone. As seen in the zone's SOA record. </param>
-        /// <param name="version"> Version is the never-repeating, totally-orderable, version of the zone, from which the serial field of the zone's SOA record is derived. </param>
-        /// <param name="viewId"> The OCID of the private view containing the zone. This value will be null for zones in the global DNS, which are publicly resolvable and not part of a private view. </param>
-        /// <param name="zoneType"> The type of the zone. Must be either PRIMARY or SECONDARY. SECONDARY is only supported for GLOBAL zones. </param>
-        /// <param name="timeCreated"> Zones timeCreated. </param>
-        /// <returns> A new <see cref="Oracle.DnsPrivateZoneData"/> instance for mocking. </returns>
-        public static DnsPrivateZoneData DnsPrivateZoneData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, string ocid = null, bool? isProtected = null, DnsPrivateZonesProvisioningState? provisioningState = null, string self = null, int? serial = null, string version = null, string viewId = null, ZoneType? zoneType = null, DateTimeOffset? timeCreated = null)
-        {
-            return new DnsPrivateZoneData(id, name, resourceType, systemData, ocid, isProtected, provisioningState, self, serial, version, viewId, zoneType, timeCreated, serializedAdditionalRawData: null);
-        }
-
-        /// <summary> Initializes a new instance of <see cref="Oracle.GiVersionData"/>. </summary>
+        /// <summary> Initializes a new instance of <see cref="Models.GiVersion"/>. </summary>
         /// <param name="id"> The id. </param>
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
         /// <param name="systemData"> The systemData. </param>
         /// <param name="version"> A valid Oracle Grid Infrastructure (GI) software version. </param>
-        /// <returns> A new <see cref="Oracle.GiVersionData"/> instance for mocking. </returns>
-        public static GiVersionData GiVersionData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, string version = null)
+        /// <returns> A new <see cref="Models.GiVersion"/> instance for mocking. </returns>
+        public static GiVersion GiVersion(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, string version = null)
         {
-            return new GiVersionData(id, name, resourceType, systemData, version, serializedAdditionalRawData: null);
+            return new GiVersion(id, name, resourceType, systemData, version, serializedAdditionalRawData: null);
         }
 
         /// <summary> Initializes a new instance of <see cref="Oracle.OracleSubscriptionData"/>. </summary>
@@ -260,34 +240,6 @@ namespace Azure.ResourceManager.Oracle.Models
         public static OracleSubscriptionData OracleSubscriptionData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, ArmPlan plan = null, OracleSubscriptionProvisioningState? provisioningState = null, string saasSubscriptionId = null, string cloudAccountId = null, CloudAccountProvisioningState? cloudAccountState = null, string termUnit = null)
         {
             return new OracleSubscriptionData(id, name, resourceType, systemData, plan, provisioningState, saasSubscriptionId, cloudAccountId, cloudAccountState, termUnit, serializedAdditionalRawData: null);
-        }
-
-        /// <summary> Initializes a new instance of <see cref="Models.CloudAccountDetails"/>. </summary>
-        /// <param name="cloudAccountName"> Cloud Account name. </param>
-        /// <param name="cloudAccountHomeRegion"> Cloud Account Home region. </param>
-        /// <returns> A new <see cref="Models.CloudAccountDetails"/> instance for mocking. </returns>
-        public static CloudAccountDetails CloudAccountDetails(string cloudAccountName = null, string cloudAccountHomeRegion = null)
-        {
-            return new CloudAccountDetails(cloudAccountName, cloudAccountHomeRegion, serializedAdditionalRawData: null);
-        }
-
-        /// <summary> Initializes a new instance of <see cref="Models.SaasSubscriptionDetails"/>. </summary>
-        /// <param name="id"> Purchased SaaS subscription ID. </param>
-        /// <param name="subscriptionName"> SaaS subscription name. </param>
-        /// <param name="timeCreated"> Creation Date and Time. </param>
-        /// <param name="offerId"> Purchased offer ID. </param>
-        /// <param name="planId"> Purchased offer's plan ID. </param>
-        /// <param name="saasSubscriptionStatus"> Indicates the status of the Subscription. </param>
-        /// <param name="publisherId"> Publisher ID. </param>
-        /// <param name="purchaserEmailId"> Purchaser Email ID. </param>
-        /// <param name="purchaserTenantId"> Purchaser Tenant ID. </param>
-        /// <param name="termUnit"> Purchase Term Unit. </param>
-        /// <param name="isAutoRenew"> AutoRenew flag. </param>
-        /// <param name="isFreeTrial"> FreeTrial flag. </param>
-        /// <returns> A new <see cref="Models.SaasSubscriptionDetails"/> instance for mocking. </returns>
-        public static SaasSubscriptionDetails SaasSubscriptionDetails(string id = null, string subscriptionName = null, DateTimeOffset? timeCreated = null, string offerId = null, string planId = null, string saasSubscriptionStatus = null, string publisherId = null, string purchaserEmailId = null, string purchaserTenantId = null, string termUnit = null, bool? isAutoRenew = null, bool? isFreeTrial = null)
-        {
-            return new SaasSubscriptionDetails(id, subscriptionName, timeCreated, offerId, planId, saasSubscriptionStatus, publisherId, purchaserEmailId, purchaserTenantId, termUnit, isAutoRenew, isFreeTrial, serializedAdditionalRawData: null);
         }
 
         /// <summary> Initializes a new instance of <see cref="Oracle.DbServerData"/>. </summary>
@@ -336,39 +288,6 @@ namespace Azure.ResourceManager.Oracle.Models
             return new DbServerPatchingDetails(estimatedPatchDuration, patchingStatus, timePatchingEnded, timePatchingStarted, serializedAdditionalRawData: null);
         }
 
-        /// <summary> Initializes a new instance of <see cref="Oracle.DbNodeData"/>. </summary>
-        /// <param name="id"> The id. </param>
-        /// <param name="name"> The name. </param>
-        /// <param name="resourceType"> The resourceType. </param>
-        /// <param name="systemData"> The systemData. </param>
-        /// <param name="ocid"> DbNode OCID. </param>
-        /// <param name="additionalDetails"> Additional information about the planned maintenance. </param>
-        /// <param name="backupIPId"> The OCID of the backup IP address associated with the database node. </param>
-        /// <param name="backupVnic2Id"> The OCID of the second backup VNIC. </param>
-        /// <param name="backupVnicId"> The OCID of the backup VNIC. </param>
-        /// <param name="cpuCoreCount"> The number of CPU cores enabled on the Db node. </param>
-        /// <param name="dbNodeStorageSizeInGbs"> The allocated local node storage in GBs on the Db node. </param>
-        /// <param name="dbServerId"> The OCID of the Exacc Db server associated with the database node. </param>
-        /// <param name="dbSystemId"> The OCID of the DB system. </param>
-        /// <param name="faultDomain"> The name of the Fault Domain the instance is contained in. </param>
-        /// <param name="hostIPId"> The OCID of the host IP address associated with the database node. </param>
-        /// <param name="hostname"> The host name for the database node. </param>
-        /// <param name="provisioningState"> The current state of the database node. </param>
-        /// <param name="lifecycleDetails"> Lifecycle details of Db Node. </param>
-        /// <param name="maintenanceType"> The type of database node maintenance. </param>
-        /// <param name="memorySizeInGbs"> The allocated memory in GBs on the Db node. </param>
-        /// <param name="softwareStorageSizeInGb"> The size (in GB) of the block storage volume allocation for the DB system. This attribute applies only for virtual machine DB systems. </param>
-        /// <param name="timeCreated"> The date and time that the database node was created. </param>
-        /// <param name="timeMaintenanceWindowEnd"> End date and time of maintenance window. </param>
-        /// <param name="timeMaintenanceWindowStart"> Start date and time of maintenance window. </param>
-        /// <param name="vnic2Id"> The OCID of the second VNIC. </param>
-        /// <param name="vnicId"> The OCID of the VNIC. </param>
-        /// <returns> A new <see cref="Oracle.DbNodeData"/> instance for mocking. </returns>
-        public static DbNodeData DbNodeData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, string ocid = null, string additionalDetails = null, string backupIPId = null, string backupVnic2Id = null, string backupVnicId = null, int? cpuCoreCount = null, int? dbNodeStorageSizeInGbs = null, string dbServerId = null, string dbSystemId = null, string faultDomain = null, string hostIPId = null, string hostname = null, DbNodeProvisioningState? provisioningState = null, string lifecycleDetails = null, DbNodeMaintenanceType? maintenanceType = null, int? memorySizeInGbs = null, int? softwareStorageSizeInGb = null, DateTimeOffset? timeCreated = null, DateTimeOffset? timeMaintenanceWindowEnd = null, DateTimeOffset? timeMaintenanceWindowStart = null, string vnic2Id = null, string vnicId = null)
-        {
-            return new DbNodeData(id, name, resourceType, systemData, ocid, additionalDetails, backupIPId, backupVnic2Id, backupVnicId, cpuCoreCount, dbNodeStorageSizeInGbs, dbServerId, dbSystemId, faultDomain, hostIPId, hostname, provisioningState, lifecycleDetails, maintenanceType, memorySizeInGbs, softwareStorageSizeInGb, timeCreated, timeMaintenanceWindowEnd, timeMaintenanceWindowStart, vnic2Id, vnicId, serializedAdditionalRawData: null);
-        }
-
         /// <summary> Initializes a new instance of <see cref="Models.PrivateIPAddressProperties"/>. </summary>
         /// <param name="displayName"> PrivateIpAddresses displayName. </param>
         /// <param name="hostnameLabel"> PrivateIpAddresses hostnameLabel. </param>
@@ -381,7 +300,7 @@ namespace Azure.ResourceManager.Oracle.Models
             return new PrivateIPAddressProperties(displayName, hostnameLabel, ocid, ipAddress, subnetId, serializedAdditionalRawData: null);
         }
 
-        /// <summary> Initializes a new instance of <see cref="Oracle.VirtualNetworkAddressData"/>. </summary>
+        /// <summary> Initializes a new instance of <see cref="Models.VirtualNetworkAddress"/>. </summary>
         /// <param name="id"> The id. </param>
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
@@ -393,10 +312,10 @@ namespace Azure.ResourceManager.Oracle.Models
         /// <param name="lifecycleDetails"> Additional information about the current lifecycle state of the application virtual IP (VIP) address. </param>
         /// <param name="provisioningState"> virtual network address provisioning state. </param>
         /// <param name="timeAssigned"> The date and time when the create operation for the application virtual IP (VIP) address completed. </param>
-        /// <returns> A new <see cref="Oracle.VirtualNetworkAddressData"/> instance for mocking. </returns>
-        public static VirtualNetworkAddressData VirtualNetworkAddressData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, string ipAddress = null, string vmOcid = null, string ocid = null, string domain = null, string lifecycleDetails = null, VirtualNetworkAddressProvisioningState? provisioningState = null, DateTimeOffset? timeAssigned = null)
+        /// <returns> A new <see cref="Models.VirtualNetworkAddress"/> instance for mocking. </returns>
+        public static VirtualNetworkAddress VirtualNetworkAddress(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, string ipAddress = null, string vmOcid = null, string ocid = null, string domain = null, string lifecycleDetails = null, VirtualNetworkAddressProvisioningState? provisioningState = null, DateTimeOffset? timeAssigned = null)
         {
-            return new VirtualNetworkAddressData(id, name, resourceType, systemData, ipAddress, vmOcid, ocid, domain, lifecycleDetails, provisioningState, timeAssigned, serializedAdditionalRawData: null);
+            return new VirtualNetworkAddress(id, name, resourceType, systemData, ipAddress, vmOcid, ocid, domain, lifecycleDetails, provisioningState, timeAssigned, serializedAdditionalRawData: null);
         }
     }
 }

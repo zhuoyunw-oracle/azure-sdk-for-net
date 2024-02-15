@@ -10,13 +10,10 @@ using System.Collections.Generic;
 using Azure.Core;
 using Azure.ResourceManager.Models;
 
-namespace Azure.ResourceManager.Oracle
+namespace Azure.ResourceManager.Oracle.Models
 {
-    /// <summary>
-    /// A class representing the DbSystemShape data model.
-    /// DbSystemShape resource definition
-    /// </summary>
-    public partial class DbSystemShapeData : ResourceData
+    /// <summary> DbSystemShape resource definition. </summary>
+    public partial class DbSystemShape : ResourceData
     {
         /// <summary>
         /// Keeps track of any properties unknown to the library.
@@ -50,12 +47,12 @@ namespace Azure.ResourceManager.Oracle
         /// </summary>
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
-        /// <summary> Initializes a new instance of <see cref="DbSystemShapeData"/>. </summary>
-        public DbSystemShapeData()
+        /// <summary> Initializes a new instance of <see cref="DbSystemShape"/>. </summary>
+        public DbSystemShape()
         {
         }
 
-        /// <summary> Initializes a new instance of <see cref="DbSystemShapeData"/>. </summary>
+        /// <summary> Initializes a new instance of <see cref="DbSystemShape"/>. </summary>
         /// <param name="id"> The id. </param>
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
@@ -81,7 +78,7 @@ namespace Azure.ResourceManager.Oracle
         /// <param name="maximumNodeCount"> The maximum number of database nodes available for this shape. </param>
         /// <param name="availableCoreCountPerNode"> The maximum number of CPU cores per database node that can be enabled for this shape. Only applicable to the flex Exadata shape and ExaCC Elastic shapes. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal DbSystemShapeData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, string shapeFamily, int? availableCoreCount, int? minimumCoreCount, int? runtimeMinimumCoreCount, int? coreCountIncrement, int? minStorageCount, int? maxStorageCount, double? availableDataStoragePerServerInTbs, int? availableMemoryPerNodeInGbs, int? availableDbNodePerNodeInGbs, int? minCoreCountPerNode, int? availableMemoryInGbs, int? minMemoryPerNodeInGbs, int? availableDbNodeStorageInGbs, int? minDbNodeStoragePerNodeInGbs, int? availableDataStorageInTbs, int? minDataStorageInTbs, int? minimumNodeCount, int? maximumNodeCount, int? availableCoreCountPerNode, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
+        internal DbSystemShape(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, string shapeFamily, int? availableCoreCount, int? minimumCoreCount, int? runtimeMinimumCoreCount, int? coreCountIncrement, int? minStorageCount, int? maxStorageCount, double? availableDataStoragePerServerInTbs, int? availableMemoryPerNodeInGbs, int? availableDbNodePerNodeInGbs, int? minCoreCountPerNode, int? availableMemoryInGbs, int? minMemoryPerNodeInGbs, int? availableDbNodeStorageInGbs, int? minDbNodeStoragePerNodeInGbs, int? availableDataStorageInTbs, int? minDataStorageInTbs, int? minimumNodeCount, int? maximumNodeCount, int? availableCoreCountPerNode, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
         {
             ShapeFamily = shapeFamily;
             AvailableCoreCount = availableCoreCount;

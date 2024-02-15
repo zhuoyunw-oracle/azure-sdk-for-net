@@ -55,4 +55,44 @@ acronym-mapping:
   URI: Uri
   Etag: ETag|etag
 
+directive:
+  - remove-operation: GiVersions_Get
+  - remove-operation: DbSystemShapes_Get
+  - remove-operation: OracleSubscriptions_CreateOrUpdate
+  - remove-operation: OracleSubscriptions_Delete
+  - remove-operation: OracleSubscriptions_Update
+  - remove-operation: OracleSubscriptions_ListCloudAccountDetails
+  - remove-operation: OracleSubscriptions_ListSaasSubscriptionDetails
+  # DnsPrivateViews ListByLocation is still generated even if removed here
+  - remove-opeartion: DnsPrivateViews_ListByLocation
+  - remove-operation: DnsPrivateViews_Get
+  - remove-operation: DnsPrivateZones_ListByLocation
+  - remove-operation: DnsPrivateZones_Get
+  - remove-operation: VirtualNetworkAddresses_ListByCloudVmCluster
+  - remove-operation: VirtualNetworkAddresses_Get
+  - remove-operation: VirtualNetworkAddresses_Delete
+  # Vnet Create API is still generated even if removed here
+  - remove-opeartion: VirtualNetworkAddresses_CreateOrUpdate
+  - remove-operation: DbNodes_ListByCloudVmCluster
+  - remove-operation: DbNodes_Get
+  - from: openapi.json
+    where: $.definitions.CloudExadataInfrastructureProperties.properties.dataStorageSizeInTbs
+    transform: >
+      $['format'] = "double";
+      $['type'] = "number";
+  # The arrays are always read-only in the generated SDK even if it's defined as read & create in the specs, transform cannot help here 
+  # - from: openapi.json
+  #   where: $.definitions.CloudVmClusterProperties.properties
+  #   transform: >
+  #       $.sshPublicKeys = {
+  #           "type": "array",
+  #           "description": "The public key portion of one or more key pairs used for SSH access to the cloud VM cluster.",
+  #           "items": {
+  #             "type": "string"
+  #           },
+  #           "x-ms-mutability": [
+  #               "read",
+  #               "create"
+  #           ]
+  #       };
 ```

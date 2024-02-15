@@ -11,20 +11,19 @@ using System.Collections.Generic;
 using System.Text.Json;
 using Azure.Core;
 using Azure.ResourceManager.Models;
-using Azure.ResourceManager.Oracle.Models;
 
-namespace Azure.ResourceManager.Oracle
+namespace Azure.ResourceManager.Oracle.Models
 {
-    public partial class DnsPrivateViewData : IUtf8JsonSerializable, IJsonModel<DnsPrivateViewData>
+    public partial class VirtualNetworkAddress : IUtf8JsonSerializable, IJsonModel<VirtualNetworkAddress>
     {
-        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer) => ((IJsonModel<DnsPrivateViewData>)this).Write(writer, new ModelReaderWriterOptions("W"));
+        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer) => ((IJsonModel<VirtualNetworkAddress>)this).Write(writer, new ModelReaderWriterOptions("W"));
 
-        void IJsonModel<DnsPrivateViewData>.Write(Utf8JsonWriter writer, ModelReaderWriterOptions options)
+        void IJsonModel<VirtualNetworkAddress>.Write(Utf8JsonWriter writer, ModelReaderWriterOptions options)
         {
-            var format = options.Format == "W" ? ((IPersistableModel<DnsPrivateViewData>)this).GetFormatFromOptions(options) : options.Format;
+            var format = options.Format == "W" ? ((IPersistableModel<VirtualNetworkAddress>)this).GetFormatFromOptions(options) : options.Format;
             if (format != "J")
             {
-                throw new FormatException($"The model {nameof(DnsPrivateViewData)} does not support '{format}' format.");
+                throw new FormatException($"The model {nameof(VirtualNetworkAddress)} does not support '{format}' format.");
             }
 
             writer.WriteStartObject();
@@ -50,40 +49,40 @@ namespace Azure.ResourceManager.Oracle
             }
             writer.WritePropertyName("properties"u8);
             writer.WriteStartObject();
+            if (Optional.IsDefined(IPAddress))
+            {
+                writer.WritePropertyName("ipAddress"u8);
+                writer.WriteStringValue(IPAddress);
+            }
+            if (Optional.IsDefined(VmOcid))
+            {
+                writer.WritePropertyName("vmOcid"u8);
+                writer.WriteStringValue(VmOcid);
+            }
             if (options.Format != "W" && Optional.IsDefined(Ocid))
             {
                 writer.WritePropertyName("ocid"u8);
                 writer.WriteStringValue(Ocid);
             }
-            if (options.Format != "W" && Optional.IsDefined(DisplayName))
+            if (options.Format != "W" && Optional.IsDefined(Domain))
             {
-                writer.WritePropertyName("displayName"u8);
-                writer.WriteStringValue(DisplayName);
+                writer.WritePropertyName("domain"u8);
+                writer.WriteStringValue(Domain);
             }
-            if (options.Format != "W" && Optional.IsDefined(IsProtected))
+            if (options.Format != "W" && Optional.IsDefined(LifecycleDetails))
             {
-                writer.WritePropertyName("isProtected"u8);
-                writer.WriteBooleanValue(IsProtected.Value);
+                writer.WritePropertyName("lifecycleDetails"u8);
+                writer.WriteStringValue(LifecycleDetails);
             }
             if (options.Format != "W" && Optional.IsDefined(ProvisioningState))
             {
                 writer.WritePropertyName("provisioningState"u8);
                 writer.WriteStringValue(ProvisioningState.Value.ToString());
             }
-            if (options.Format != "W" && Optional.IsDefined(Self))
+            if (options.Format != "W" && Optional.IsDefined(TimeAssigned))
             {
-                writer.WritePropertyName("self"u8);
-                writer.WriteStringValue(Self);
-            }
-            if (options.Format != "W" && Optional.IsDefined(TimeCreated))
-            {
-                writer.WritePropertyName("timeCreated"u8);
-                writer.WriteStringValue(TimeCreated.Value, "O");
-            }
-            if (options.Format != "W" && Optional.IsDefined(TimeUpdated))
-            {
-                writer.WritePropertyName("timeUpdated"u8);
-                writer.WriteStringValue(TimeUpdated.Value, "O");
+                writer.WritePropertyName("timeAssigned"u8);
+                writer.WriteStringValue(TimeAssigned.Value, "O");
             }
             writer.WriteEndObject();
             if (options.Format != "W" && _serializedAdditionalRawData != null)
@@ -104,19 +103,19 @@ namespace Azure.ResourceManager.Oracle
             writer.WriteEndObject();
         }
 
-        DnsPrivateViewData IJsonModel<DnsPrivateViewData>.Create(ref Utf8JsonReader reader, ModelReaderWriterOptions options)
+        VirtualNetworkAddress IJsonModel<VirtualNetworkAddress>.Create(ref Utf8JsonReader reader, ModelReaderWriterOptions options)
         {
-            var format = options.Format == "W" ? ((IPersistableModel<DnsPrivateViewData>)this).GetFormatFromOptions(options) : options.Format;
+            var format = options.Format == "W" ? ((IPersistableModel<VirtualNetworkAddress>)this).GetFormatFromOptions(options) : options.Format;
             if (format != "J")
             {
-                throw new FormatException($"The model {nameof(DnsPrivateViewData)} does not support '{format}' format.");
+                throw new FormatException($"The model {nameof(VirtualNetworkAddress)} does not support '{format}' format.");
             }
 
             using JsonDocument document = JsonDocument.ParseValue(ref reader);
-            return DeserializeDnsPrivateViewData(document.RootElement, options);
+            return DeserializeVirtualNetworkAddress(document.RootElement, options);
         }
 
-        internal static DnsPrivateViewData DeserializeDnsPrivateViewData(JsonElement element, ModelReaderWriterOptions options = null)
+        internal static VirtualNetworkAddress DeserializeVirtualNetworkAddress(JsonElement element, ModelReaderWriterOptions options = null)
         {
             options ??= new ModelReaderWriterOptions("W");
 
@@ -128,13 +127,13 @@ namespace Azure.ResourceManager.Oracle
             string name = default;
             ResourceType type = default;
             Optional<SystemData> systemData = default;
+            Optional<string> ipAddress = default;
+            Optional<string> vmOcid = default;
             Optional<string> ocid = default;
-            Optional<string> displayName = default;
-            Optional<bool> isProtected = default;
-            Optional<DnsPrivateViewsProvisioningState> provisioningState = default;
-            Optional<string> self = default;
-            Optional<DateTimeOffset> timeCreated = default;
-            Optional<DateTimeOffset> timeUpdated = default;
+            Optional<string> domain = default;
+            Optional<string> lifecycleDetails = default;
+            Optional<VirtualNetworkAddressProvisioningState> provisioningState = default;
+            Optional<DateTimeOffset> timeAssigned = default;
             IDictionary<string, BinaryData> serializedAdditionalRawData = default;
             Dictionary<string, BinaryData> additionalPropertiesDictionary = new Dictionary<string, BinaryData>();
             foreach (var property in element.EnumerateObject())
@@ -172,23 +171,29 @@ namespace Azure.ResourceManager.Oracle
                     }
                     foreach (var property0 in property.Value.EnumerateObject())
                     {
+                        if (property0.NameEquals("ipAddress"u8))
+                        {
+                            ipAddress = property0.Value.GetString();
+                            continue;
+                        }
+                        if (property0.NameEquals("vmOcid"u8))
+                        {
+                            vmOcid = property0.Value.GetString();
+                            continue;
+                        }
                         if (property0.NameEquals("ocid"u8))
                         {
                             ocid = property0.Value.GetString();
                             continue;
                         }
-                        if (property0.NameEquals("displayName"u8))
+                        if (property0.NameEquals("domain"u8))
                         {
-                            displayName = property0.Value.GetString();
+                            domain = property0.Value.GetString();
                             continue;
                         }
-                        if (property0.NameEquals("isProtected"u8))
+                        if (property0.NameEquals("lifecycleDetails"u8))
                         {
-                            if (property0.Value.ValueKind == JsonValueKind.Null)
-                            {
-                                continue;
-                            }
-                            isProtected = property0.Value.GetBoolean();
+                            lifecycleDetails = property0.Value.GetString();
                             continue;
                         }
                         if (property0.NameEquals("provisioningState"u8))
@@ -197,30 +202,16 @@ namespace Azure.ResourceManager.Oracle
                             {
                                 continue;
                             }
-                            provisioningState = new DnsPrivateViewsProvisioningState(property0.Value.GetString());
+                            provisioningState = new VirtualNetworkAddressProvisioningState(property0.Value.GetString());
                             continue;
                         }
-                        if (property0.NameEquals("self"u8))
-                        {
-                            self = property0.Value.GetString();
-                            continue;
-                        }
-                        if (property0.NameEquals("timeCreated"u8))
+                        if (property0.NameEquals("timeAssigned"u8))
                         {
                             if (property0.Value.ValueKind == JsonValueKind.Null)
                             {
                                 continue;
                             }
-                            timeCreated = property0.Value.GetDateTimeOffset("O");
-                            continue;
-                        }
-                        if (property0.NameEquals("timeUpdated"u8))
-                        {
-                            if (property0.Value.ValueKind == JsonValueKind.Null)
-                            {
-                                continue;
-                            }
-                            timeUpdated = property0.Value.GetDateTimeOffset("O");
+                            timeAssigned = property0.Value.GetDateTimeOffset("O");
                             continue;
                         }
                     }
@@ -232,38 +223,38 @@ namespace Azure.ResourceManager.Oracle
                 }
             }
             serializedAdditionalRawData = additionalPropertiesDictionary;
-            return new DnsPrivateViewData(id, name, type, systemData.Value, ocid.Value, displayName.Value, Optional.ToNullable(isProtected), Optional.ToNullable(provisioningState), self.Value, Optional.ToNullable(timeCreated), Optional.ToNullable(timeUpdated), serializedAdditionalRawData);
+            return new VirtualNetworkAddress(id, name, type, systemData.Value, ipAddress.Value, vmOcid.Value, ocid.Value, domain.Value, lifecycleDetails.Value, Optional.ToNullable(provisioningState), Optional.ToNullable(timeAssigned), serializedAdditionalRawData);
         }
 
-        BinaryData IPersistableModel<DnsPrivateViewData>.Write(ModelReaderWriterOptions options)
+        BinaryData IPersistableModel<VirtualNetworkAddress>.Write(ModelReaderWriterOptions options)
         {
-            var format = options.Format == "W" ? ((IPersistableModel<DnsPrivateViewData>)this).GetFormatFromOptions(options) : options.Format;
+            var format = options.Format == "W" ? ((IPersistableModel<VirtualNetworkAddress>)this).GetFormatFromOptions(options) : options.Format;
 
             switch (format)
             {
                 case "J":
                     return ModelReaderWriter.Write(this, options);
                 default:
-                    throw new FormatException($"The model {nameof(DnsPrivateViewData)} does not support '{options.Format}' format.");
+                    throw new FormatException($"The model {nameof(VirtualNetworkAddress)} does not support '{options.Format}' format.");
             }
         }
 
-        DnsPrivateViewData IPersistableModel<DnsPrivateViewData>.Create(BinaryData data, ModelReaderWriterOptions options)
+        VirtualNetworkAddress IPersistableModel<VirtualNetworkAddress>.Create(BinaryData data, ModelReaderWriterOptions options)
         {
-            var format = options.Format == "W" ? ((IPersistableModel<DnsPrivateViewData>)this).GetFormatFromOptions(options) : options.Format;
+            var format = options.Format == "W" ? ((IPersistableModel<VirtualNetworkAddress>)this).GetFormatFromOptions(options) : options.Format;
 
             switch (format)
             {
                 case "J":
                     {
                         using JsonDocument document = JsonDocument.Parse(data);
-                        return DeserializeDnsPrivateViewData(document.RootElement, options);
+                        return DeserializeVirtualNetworkAddress(document.RootElement, options);
                     }
                 default:
-                    throw new FormatException($"The model {nameof(DnsPrivateViewData)} does not support '{options.Format}' format.");
+                    throw new FormatException($"The model {nameof(VirtualNetworkAddress)} does not support '{options.Format}' format.");
             }
         }
 
-        string IPersistableModel<DnsPrivateViewData>.GetFormatFromOptions(ModelReaderWriterOptions options) => "J";
+        string IPersistableModel<VirtualNetworkAddress>.GetFormatFromOptions(ModelReaderWriterOptions options) => "J";
     }
 }

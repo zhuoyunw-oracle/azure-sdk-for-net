@@ -7,6 +7,7 @@ using Azure.Core.TestFramework;
 using Azure.ResourceManager.Resources;
 using NUnit.Framework;
 using Azure.Core;
+using Azure.ResourceManager.Oracle.Models;
 
 namespace Azure.ResourceManager.Oracle.Tests.Scenario
 {
@@ -33,11 +34,12 @@ namespace Azure.ResourceManager.Oracle.Tests.Scenario
         public async Task TestDbSystemShapeOperations()
         {
             // List By Location
-            DbSystemShapeCollection dbSystemShapes = OracleExtensions.GetDbSystemShapes(DefaultSubscription, AzureLocation.EastUS);
-            List<DbSystemShapeResource> dbSystemShapeResources = await dbSystemShapes.ToEnumerableAsync();
-            Assert.NotNull(dbSystemShapeResources);
-            Assert.IsTrue(dbSystemShapeResources.Count >= 1);
-            Assert.AreEqual("Exadata.X9M", dbSystemShapeResources[0].Data.Name);
+            AsyncPageable<DbSystemShape> dbSystemShapeListResponse = OracleExtensions.GetDbSystemShapesByLocationAsync(DefaultSubscription, AzureLocation.EastUS);
+            // DbSystemShapeCollection dbSystemShapes = OracleExtensions.GetDbSystemShapes(DefaultSubscription, AzureLocation.EastUS);
+            List<DbSystemShape> dbSystemShapes = await dbSystemShapeListResponse.ToEnumerableAsync();
+            Assert.NotNull(dbSystemShapes);
+            Assert.IsTrue(dbSystemShapes.Count >= 1);
+            Assert.AreEqual("Exadata.X9M", dbSystemShapes[0].Name);
 
             // // Get
             // Response<DbSystemShapeResource> getDbSystemShapeResponse = await OracleExtensions.GetDbSystemShapeAsync(DefaultSubscription, AzureLocation.EastUS, "EXADATA.X9M");

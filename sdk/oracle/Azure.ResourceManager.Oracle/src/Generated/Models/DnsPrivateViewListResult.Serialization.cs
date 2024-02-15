@@ -10,7 +10,6 @@ using System.ClientModel.Primitives;
 using System.Collections.Generic;
 using System.Text.Json;
 using Azure.Core;
-using Azure.ResourceManager.Oracle;
 
 namespace Azure.ResourceManager.Oracle.Models
 {
@@ -77,7 +76,7 @@ namespace Azure.ResourceManager.Oracle.Models
             {
                 return null;
             }
-            IReadOnlyList<DnsPrivateViewData> value = default;
+            IReadOnlyList<DnsPrivateView> value = default;
             Optional<Uri> nextLink = default;
             IDictionary<string, BinaryData> serializedAdditionalRawData = default;
             Dictionary<string, BinaryData> additionalPropertiesDictionary = new Dictionary<string, BinaryData>();
@@ -85,10 +84,10 @@ namespace Azure.ResourceManager.Oracle.Models
             {
                 if (property.NameEquals("value"u8))
                 {
-                    List<DnsPrivateViewData> array = new List<DnsPrivateViewData>();
+                    List<DnsPrivateView> array = new List<DnsPrivateView>();
                     foreach (var item in property.Value.EnumerateArray())
                     {
-                        array.Add(DnsPrivateViewData.DeserializeDnsPrivateViewData(item));
+                        array.Add(DnsPrivateView.DeserializeDnsPrivateView(item));
                     }
                     value = array;
                     continue;

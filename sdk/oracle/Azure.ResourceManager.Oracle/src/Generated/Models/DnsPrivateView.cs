@@ -9,15 +9,11 @@ using System;
 using System.Collections.Generic;
 using Azure.Core;
 using Azure.ResourceManager.Models;
-using Azure.ResourceManager.Oracle.Models;
 
-namespace Azure.ResourceManager.Oracle
+namespace Azure.ResourceManager.Oracle.Models
 {
-    /// <summary>
-    /// A class representing the DnsPrivateView data model.
-    /// DnsPrivateView resource definition
-    /// </summary>
-    public partial class DnsPrivateViewData : ResourceData
+    /// <summary> DnsPrivateView resource definition. </summary>
+    public partial class DnsPrivateView : ResourceData
     {
         /// <summary>
         /// Keeps track of any properties unknown to the library.
@@ -51,12 +47,12 @@ namespace Azure.ResourceManager.Oracle
         /// </summary>
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
-        /// <summary> Initializes a new instance of <see cref="DnsPrivateViewData"/>. </summary>
-        public DnsPrivateViewData()
+        /// <summary> Initializes a new instance of <see cref="DnsPrivateView"/>. </summary>
+        public DnsPrivateView()
         {
         }
 
-        /// <summary> Initializes a new instance of <see cref="DnsPrivateViewData"/>. </summary>
+        /// <summary> Initializes a new instance of <see cref="DnsPrivateView"/>. </summary>
         /// <param name="id"> The id. </param>
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
@@ -69,7 +65,7 @@ namespace Azure.ResourceManager.Oracle
         /// <param name="timeCreated"> views timeCreated. </param>
         /// <param name="timeUpdated"> views timeCreated. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal DnsPrivateViewData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, string ocid, string displayName, bool? isProtected, DnsPrivateViewsProvisioningState? provisioningState, string self, DateTimeOffset? timeCreated, DateTimeOffset? timeUpdated, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
+        internal DnsPrivateView(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, string ocid, string displayName, bool? isProtected, DnsPrivateViewsProvisioningState? provisioningState, string self, DateTimeOffset? timeCreated, DateTimeOffset? timeUpdated, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
         {
             Ocid = ocid;
             DisplayName = displayName;

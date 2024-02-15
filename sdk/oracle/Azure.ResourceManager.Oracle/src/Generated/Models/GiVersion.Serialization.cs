@@ -12,18 +12,18 @@ using System.Text.Json;
 using Azure.Core;
 using Azure.ResourceManager.Models;
 
-namespace Azure.ResourceManager.Oracle
+namespace Azure.ResourceManager.Oracle.Models
 {
-    public partial class GiVersionData : IUtf8JsonSerializable, IJsonModel<GiVersionData>
+    public partial class GiVersion : IUtf8JsonSerializable, IJsonModel<GiVersion>
     {
-        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer) => ((IJsonModel<GiVersionData>)this).Write(writer, new ModelReaderWriterOptions("W"));
+        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer) => ((IJsonModel<GiVersion>)this).Write(writer, new ModelReaderWriterOptions("W"));
 
-        void IJsonModel<GiVersionData>.Write(Utf8JsonWriter writer, ModelReaderWriterOptions options)
+        void IJsonModel<GiVersion>.Write(Utf8JsonWriter writer, ModelReaderWriterOptions options)
         {
-            var format = options.Format == "W" ? ((IPersistableModel<GiVersionData>)this).GetFormatFromOptions(options) : options.Format;
+            var format = options.Format == "W" ? ((IPersistableModel<GiVersion>)this).GetFormatFromOptions(options) : options.Format;
             if (format != "J")
             {
-                throw new FormatException($"The model {nameof(GiVersionData)} does not support '{format}' format.");
+                throw new FormatException($"The model {nameof(GiVersion)} does not support '{format}' format.");
             }
 
             writer.WriteStartObject();
@@ -73,19 +73,19 @@ namespace Azure.ResourceManager.Oracle
             writer.WriteEndObject();
         }
 
-        GiVersionData IJsonModel<GiVersionData>.Create(ref Utf8JsonReader reader, ModelReaderWriterOptions options)
+        GiVersion IJsonModel<GiVersion>.Create(ref Utf8JsonReader reader, ModelReaderWriterOptions options)
         {
-            var format = options.Format == "W" ? ((IPersistableModel<GiVersionData>)this).GetFormatFromOptions(options) : options.Format;
+            var format = options.Format == "W" ? ((IPersistableModel<GiVersion>)this).GetFormatFromOptions(options) : options.Format;
             if (format != "J")
             {
-                throw new FormatException($"The model {nameof(GiVersionData)} does not support '{format}' format.");
+                throw new FormatException($"The model {nameof(GiVersion)} does not support '{format}' format.");
             }
 
             using JsonDocument document = JsonDocument.ParseValue(ref reader);
-            return DeserializeGiVersionData(document.RootElement, options);
+            return DeserializeGiVersion(document.RootElement, options);
         }
 
-        internal static GiVersionData DeserializeGiVersionData(JsonElement element, ModelReaderWriterOptions options = null)
+        internal static GiVersion DeserializeGiVersion(JsonElement element, ModelReaderWriterOptions options = null)
         {
             options ??= new ModelReaderWriterOptions("W");
 
@@ -149,38 +149,38 @@ namespace Azure.ResourceManager.Oracle
                 }
             }
             serializedAdditionalRawData = additionalPropertiesDictionary;
-            return new GiVersionData(id, name, type, systemData.Value, version.Value, serializedAdditionalRawData);
+            return new GiVersion(id, name, type, systemData.Value, version.Value, serializedAdditionalRawData);
         }
 
-        BinaryData IPersistableModel<GiVersionData>.Write(ModelReaderWriterOptions options)
+        BinaryData IPersistableModel<GiVersion>.Write(ModelReaderWriterOptions options)
         {
-            var format = options.Format == "W" ? ((IPersistableModel<GiVersionData>)this).GetFormatFromOptions(options) : options.Format;
+            var format = options.Format == "W" ? ((IPersistableModel<GiVersion>)this).GetFormatFromOptions(options) : options.Format;
 
             switch (format)
             {
                 case "J":
                     return ModelReaderWriter.Write(this, options);
                 default:
-                    throw new FormatException($"The model {nameof(GiVersionData)} does not support '{options.Format}' format.");
+                    throw new FormatException($"The model {nameof(GiVersion)} does not support '{options.Format}' format.");
             }
         }
 
-        GiVersionData IPersistableModel<GiVersionData>.Create(BinaryData data, ModelReaderWriterOptions options)
+        GiVersion IPersistableModel<GiVersion>.Create(BinaryData data, ModelReaderWriterOptions options)
         {
-            var format = options.Format == "W" ? ((IPersistableModel<GiVersionData>)this).GetFormatFromOptions(options) : options.Format;
+            var format = options.Format == "W" ? ((IPersistableModel<GiVersion>)this).GetFormatFromOptions(options) : options.Format;
 
             switch (format)
             {
                 case "J":
                     {
                         using JsonDocument document = JsonDocument.Parse(data);
-                        return DeserializeGiVersionData(document.RootElement, options);
+                        return DeserializeGiVersion(document.RootElement, options);
                     }
                 default:
-                    throw new FormatException($"The model {nameof(GiVersionData)} does not support '{options.Format}' format.");
+                    throw new FormatException($"The model {nameof(GiVersion)} does not support '{options.Format}' format.");
             }
         }
 
-        string IPersistableModel<GiVersionData>.GetFormatFromOptions(ModelReaderWriterOptions options) => "J";
+        string IPersistableModel<GiVersion>.GetFormatFromOptions(ModelReaderWriterOptions options) => "J";
     }
 }

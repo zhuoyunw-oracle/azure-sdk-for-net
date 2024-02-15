@@ -61,54 +61,6 @@ namespace Azure.ResourceManager.Oracle.Mocking
         }
 
         /// <summary>
-        /// Gets an object representing a <see cref="DbSystemShapeResource"/> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="DbSystemShapeResource.CreateResourceIdentifier" /> to create a <see cref="DbSystemShapeResource"/> <see cref="ResourceIdentifier"/> from its components.
-        /// </summary>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="DbSystemShapeResource"/> object. </returns>
-        public virtual DbSystemShapeResource GetDbSystemShapeResource(ResourceIdentifier id)
-        {
-            DbSystemShapeResource.ValidateResourceId(id);
-            return new DbSystemShapeResource(Client, id);
-        }
-
-        /// <summary>
-        /// Gets an object representing a <see cref="DnsPrivateViewResource"/> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="DnsPrivateViewResource.CreateResourceIdentifier" /> to create a <see cref="DnsPrivateViewResource"/> <see cref="ResourceIdentifier"/> from its components.
-        /// </summary>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="DnsPrivateViewResource"/> object. </returns>
-        public virtual DnsPrivateViewResource GetDnsPrivateViewResource(ResourceIdentifier id)
-        {
-            DnsPrivateViewResource.ValidateResourceId(id);
-            return new DnsPrivateViewResource(Client, id);
-        }
-
-        /// <summary>
-        /// Gets an object representing a <see cref="DnsPrivateZoneResource"/> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="DnsPrivateZoneResource.CreateResourceIdentifier" /> to create a <see cref="DnsPrivateZoneResource"/> <see cref="ResourceIdentifier"/> from its components.
-        /// </summary>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="DnsPrivateZoneResource"/> object. </returns>
-        public virtual DnsPrivateZoneResource GetDnsPrivateZoneResource(ResourceIdentifier id)
-        {
-            DnsPrivateZoneResource.ValidateResourceId(id);
-            return new DnsPrivateZoneResource(Client, id);
-        }
-
-        /// <summary>
-        /// Gets an object representing a <see cref="GiVersionResource"/> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="GiVersionResource.CreateResourceIdentifier" /> to create a <see cref="GiVersionResource"/> <see cref="ResourceIdentifier"/> from its components.
-        /// </summary>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="GiVersionResource"/> object. </returns>
-        public virtual GiVersionResource GetGiVersionResource(ResourceIdentifier id)
-        {
-            GiVersionResource.ValidateResourceId(id);
-            return new GiVersionResource(Client, id);
-        }
-
-        /// <summary>
         /// Gets an object representing an <see cref="OracleSubscriptionResource"/> along with the instance operations that can be performed on it but with no data.
         /// You can use <see cref="OracleSubscriptionResource.CreateResourceIdentifier" /> to create an <see cref="OracleSubscriptionResource"/> <see cref="ResourceIdentifier"/> from its components.
         /// </summary>
@@ -130,30 +82,6 @@ namespace Azure.ResourceManager.Oracle.Mocking
         {
             DbServerResource.ValidateResourceId(id);
             return new DbServerResource(Client, id);
-        }
-
-        /// <summary>
-        /// Gets an object representing a <see cref="DbNodeResource"/> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="DbNodeResource.CreateResourceIdentifier" /> to create a <see cref="DbNodeResource"/> <see cref="ResourceIdentifier"/> from its components.
-        /// </summary>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="DbNodeResource"/> object. </returns>
-        public virtual DbNodeResource GetDbNodeResource(ResourceIdentifier id)
-        {
-            DbNodeResource.ValidateResourceId(id);
-            return new DbNodeResource(Client, id);
-        }
-
-        /// <summary>
-        /// Gets an object representing a <see cref="VirtualNetworkAddressResource"/> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="VirtualNetworkAddressResource.CreateResourceIdentifier" /> to create a <see cref="VirtualNetworkAddressResource"/> <see cref="ResourceIdentifier"/> from its components.
-        /// </summary>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="VirtualNetworkAddressResource"/> object. </returns>
-        public virtual VirtualNetworkAddressResource GetVirtualNetworkAddressResource(ResourceIdentifier id)
-        {
-            VirtualNetworkAddressResource.ValidateResourceId(id);
-            return new VirtualNetworkAddressResource(Client, id);
         }
     }
 }
