@@ -63,7 +63,7 @@ namespace Azure.ResourceManager.Oracle.Tests.Scenario
             Assert.NotNull(exaInfraResult);
             Assert.IsTrue(exaInfraResult.Count >= 1);
 
-            // Update
+            // Update, not implemented
             var tagName = Recording.GenerateAssetName("TagName");
             var tagValue = Recording.GenerateAssetName("TagValue");
             ChangeTrackingDictionary<string, string> tags = new ChangeTrackingDictionary<string, string>

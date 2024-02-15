@@ -24,7 +24,6 @@ rename-mapping:
 #mgmt-debug:
 #  show-serialized-names: true
 
- 
 
 format-by-name-rules:
   'tenantId': 'uuid'
